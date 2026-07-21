@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Farm Profit Simulator</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style type="text/css">body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;max-width: 900px; margin: 0 auto; padding: 24px 32px; color: #1f2328; line-height: 1.55; }h1, h2 { border-bottom: 1px solid #d1d9e0; padding-bottom: 6px; }h2 { margin-top: 28px; } h3 { margin-top: 24px; color: #1f2328; }table { border-collapse: collapse; width: 100%; margin: 14px 0; display: block; overflow-x: auto; }th, td { border: 1px solid #d1d9e0; padding: 6px 12px; text-align: left; }th { background: #f6f8fa; font-weight: 600; }tr:nth-child(even) td { background: #f6f8fa; }code { background: #f0f1f3; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }a { color: #0969da; text-decoration: none; } a:hover { text-decoration: underline; }img { max-width: 100%; border: 1px solid #d1d9e0; border-radius: 6px; }li { margin: 3px 0; }</style>
+</head>
+<body>
+<div style="text-align:right;margin:0 0 14px"><a href="farm-profit-simulator.docx" download style="display:inline-block;background:#2E7D32;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as Word (.docx)</a><a href="farm-profit-simulator.pdf" download style="display:inline-block;background:#C62828;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as PDF (.pdf)</a></div>
+<header id="title-block-header">
+<h1 class="title">Farm Profit Simulator</h1>
+</header>
+<p><a href="../index.html">← Back to index</a></p>
+<h2 id="farm-profit-simulator-student-proposal">Farm Profit Simulator <em>(student proposal)</em></h2>
+<div style="background:#F6F8FA;border-left:4px solid #57606A;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Assessment:</b> 🔶 Fit with adjustments · <b>Category:</b> Simulator · <b>Assessed:</b> 2026-07-05 · <b>Status:</b> awaiting instructor approval</div>
+
+<p><strong>Proposal (as submitted):</strong> A farming simulator on a 1-acre farm raising various animals to determine which is most profitable. The farm is maintained with plantations, trees and animal feed; scenarios define starting numbers and maximum numbers of animals.</p>
+<p><strong>Adjustments required for approval:</strong></p>
+<ul>
+<li>Animals and plants must be <strong>simulated agents with per-tick behavior</strong> (feeding, growth, breeding, movement in pens, resource consumption) on a rendered 2D farm — not closed-form profit formulas. Without this, the real-time C++ loop is decorative and the project collapses into a calculator.</li>
+<li>The profit comparison must come from <strong>seeded, reproducible batch runs with statistical reports</strong> (the category&#39;s Headless Batch Mode requirement) — &quot;which animal profits most&quot; is an experiment across N runs, not one anecdotal run.</li>
+</ul>
+<p><em>References:</em></p>
+<ul>
+<li><a href="https://www.farming-simulator.com/">Farming Simulator (GIANTS Software, official)</a></li>
+<li><a href="https://equilinox.com/">Equilinox — ecosystem sandbox (official)</a></li>
+<li><a href="https://www.netlogo.org/">NetLogo — agent-based modeling platform (official)</a></li>
+</ul>
+<h3 id="core-tech-requirements">Core Tech Requirements</h3>
+<p>Legend: ✅ Applies directly | 🔶 Applies with domain adaptation | 🔵 Optional | ❌ Not needed | ⏭️ Second trimester</p>
+<table>
+<thead>
+<tr class="header">
+<th>Core Tech Requirement</th>
+<th>Farm Profit Simulator</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>External Database (Firebase)</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Authentication ⏭️</td>
+<td>🔵</td>
+</tr>
+<tr class="odd">
+<td>Analytics ⏭️</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>C++ Performant Service</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Real-time C++ Simulation Loop</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Application Communication</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Continuous Integration</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Data-Driven Architecture</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Front-end + Local Backend</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Custom Tools Development</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>2D Graphical Output</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>3D (strong students only)</td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>Networking System</td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td><span style="color:#8E44AD"><strong>Headless Batch Mode</strong> — run N simulations without rendering + statistical reports (new)</span></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How each requirement applies:</strong></p>
+<div style="background:#EAF3FF;border-left:4px solid #0969DA;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><i>Platform fit:</i> <b>Web browser on mobile</b> — configure scenarios and watch time-accelerated runs on the phone (WASM build); heavy batch experiments run on the PC development build (Native PC is the development vehicle, not a shipping target).</div>
+
+<div style="background:#E8F5E9;border-left:4px solid #2E7D32;padding:6px 12px;margin:4px 0 4px;border-radius:4px"><b>Front end:</b> 2D farm view (pens, plots, trees, animals), run controls, live profit/population charts. <b>Languages:</b> C++, GLSL.</div>
+
+<div style="background:#FFF3E0;border-left:4px solid #E65100;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Back end:</b> Agent simulation engine (animal/plant lifecycles, feed economy), scenario system, batch runner &amp; statistics, Firebase scenario/result library. <b>Languages:</b> C++.<br><b>Backend scope:</b> Local now, server-ready (T2) — the batch engine could run server-side with the UI as a thin viewer.</div>
+
+<ul>
+<li><em>Simulation loop:</em> fixed-timestep agent simulation — animals feed, grow, breed and die; plants and trees grow and yield; the feed economy updates every tick with time acceleration.</li>
+<li><em>Data-driven:</em> species, plants, feed types, prices, starting/max counts and scenario definitions all as data — the profit experiment IS a data file.</li>
+<li><em>Custom tool:</em> farm &amp; scenario editor — lay out the acre (pens, plots, trees) and define species parameters and economics.</li>
+<li><em>External DB:</em> shared scenario and result library. <em>Auth ⏭️:</em> optional accounts. <em>Analytics ⏭️:</em> aggregate run statistics.</li>
+<li><em>2D:</em> farm rendering with animated agents plus custom-rendered profit/population charts. <em>3D / Networking:</em> not needed.</li>
+<li><span style="color:#8E44AD"><em>Headless batch mode:</em></span> the core question — &quot;which animal profits most on 1 acre?&quot; — is answered by seeded batch runs across species/configurations with confidence-interval reports.</li>
+</ul>
+<h3 id="suggested-tech-goals">Suggested Tech Goals</h3>
+<p>G1–G3 ⭐ are the common goals (fixed for all categories); the other 3 are picked from the Simulator pool in <code>milestone-goals-pool-per-category.md</code> (G1–G3 ⭐ common, G4+ picks).</p>
+<p><em>M1:</em></p>
+<ul>
+<li><strong>G1 ⭐ Application Shell, Real-time C++ Simulation Loop, Input &amp; Core Logic</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> SDL2 window/input with a fixed-timestep loop and time acceleration (1×–1000×) driving all farm agent updates; C++17/20, CMake, Git.</li><li><b>Prerequisites:</b> None — foundation of this project.</li><li><b>Feeds into:</b> Every other goal; M1 G5 behaviors tick inside this loop and M2 G7 reuses it headless.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Data-Driven Architecture of Core Objects / Entity System</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Species, plants, feed types, market prices and scenario definitions fully described in JSON (nlohmann/json) with hot-reload for rapid experiment tuning.</li><li><b>Prerequisites:</b> G1 (loop &amp; update hooks).</li><li><b>Feeds into:</b> M1 G5 (species parameters), M1 G6 (scenarios), M2 G2 (editor edits this data), M2 G7/G16 (batch configs).</li></ul></details>
+</li>
+<li><strong>G3 ⭐ Debugging, Profiling, Stress Test &amp; CI</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> ImGui overlays (agent counts, tick ms, economy totals), Tracy profiling, Catch2 stress tests with thousands of agents at max acceleration, GitHub Actions Windows+Linux matrix.</li><li><b>Prerequisites:</b> G1 (loop to instrument).</li><li><b>Feeds into:</b> M2 G3 (CI hardening); the determinism checks that M2 G7 batch comparisons depend on.</li></ul></details>
+</li>
+<li><strong>G4 2D Visualization of the Simulated World</strong> — render the acre: pens, plots, trees, animated animals; the visual proof the sim is real.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> SDL2/OpenGL farm renderer — pens, plots, trees, animated animal sprites — with camera pan/zoom and FreeType labels/tooltips.</li><li><b>Prerequisites:</b> G1 (loop &amp; window).</li><li><b>Feeds into:</b> The live demo view; M2 G2 embeds it as the editor&#39;s live preview.</li></ul></details>
+</li>
+<li><strong>G5 Agent / Entity Behavior System</strong> — animal lifecycles (feed, growth, breeding, mortality) and plant growth as per-tick agent behavior.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Per-tick state machines for animals (feed, grow, breed, die) and growth cycles for plants/trees, seeded RNG for reproducibility, GLM math.</li><li><b>Prerequisites:</b> G1 (fixed timestep), G2 (species data).</li><li><b>Feeds into:</b> All profit outcomes; M2 G7 runs exactly these behaviors headless at scale.</li></ul></details>
+</li>
+<li><strong>G6 Scenario &amp; Parameter System</strong> — species parameters, starting/max numbers, feed costs and market prices as editable scenarios.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Scenario schema (starting/max animal counts, feed costs, prices, plot allocation) with validation and quick-swap presets for A/B experiments.</li><li><b>Prerequisites:</b> G2 (data model).</li><li><b>Feeds into:</b> M2 G2 (editor authors scenarios), M2 G7 (batch inputs), M2 G16 (campaign sweeps).</li></ul></details>
+</li>
+</ul>
+<p><em>M2:</em></p>
+<ul>
+<li><strong>G1 ⭐ Architecture — Optimization &amp; Platform Validation</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Tracy-guided optimization of agent updates (pooling, cache-friendly layouts), ASan on MSVC; WASM build validated on a mobile browser (reference phone Pixel 8a/9a), plus PC validation at maximum time acceleration with thousands of agents.</li><li><b>Prerequisites:</b> All M1 goals (hardens the M1 sim codebase).</li><li><b>Feeds into:</b> M2 G7 (batch throughput — more runs per minute means better statistics).</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Content Editor — Core</strong> — the farm &amp; scenario editor: acre layout, species parameters, economics tables, with JSON round-trip and undo/redo.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Farm &amp; scenario editor — lay out pens/plots/trees on the acre, edit species and economics tables — with JSON round-trip and an undo/redo command stack.</li><li><b>Libraries/Software:</b> Dear ImGui, nlohmann/json, project&#39;s SDL2/OpenGL farm view (live preview)</li><li><b>Prerequisites:</b> M1 G2 (data model), M1 G6 (scenario schema), M1 G4 (farm view).</li><li><b>Feeds into:</b> Every configured experiment; M2 G16 campaigns are authored here.</li></ul></details>
+</li>
+<li><strong>G3 ⭐ CI — CMake, Code Quality, Build Standards &amp; Packaging</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> CMake presets, clang-format + clang-tidy gates, CPack packaging, GitHub Actions matrix including a headless batch smoke test.</li><li><b>Prerequisites:</b> M1 G3 (CI and test foundation).</li><li><b>Feeds into:</b> Release/showcase builds; the CI batch test guards M2 G7 determinism.</li></ul></details>
+</li>
+<li><strong>G7 Headless Batch Mode &amp; Statistical Reports</strong> — the profit question answered properly: N seeded runs per configuration, means and confidence intervals.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Render-free simulation runs (N seeds × configurations), aggregation of profit/population series into means and confidence intervals, CLI entry point.</li><li><b>Prerequisites:</b> M1 G5 (agents), M1 G6 (scenarios), M2 G1 (throughput).</li><li><b>Feeds into:</b> M2 G15 (reports) and M2 G16 (campaigns) — this goal produces the project&#39;s answer.</li></ul></details>
+</li>
+<li><strong>G15 Report Generation &amp; Export Tools</strong> — species-comparison profit reports (charts + tables) exportable for the showcase.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Custom-rendered comparison charts (profit per species over time, distributions) and tables, exported as PNG/CSV/HTML report bundles.</li><li><b>Prerequisites:</b> M2 G7 (statistics to report).</li><li><b>Feeds into:</b> The showcase deliverable — &quot;goat vs. sheep vs. chickens on 1 acre&quot; as a defensible report.</li></ul></details>
+</li>
+<li><strong>G16 Multi-Scenario Campaign Runner</strong> — sweep species mixes and starting/max counts across scenario campaigns to find the optimum.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Campaign definitions sweeping species mixes and count ranges, a job queue over the batch runner with progress reporting and resume.</li><li><b>Prerequisites:</b> M2 G7 (batch runner), M1 G6 (scenario schema).</li><li><b>Feeds into:</b> The optimum-farm result presented at the demo.</li></ul></details>
+</li>
+</ul>
+<h3 id="track-goals--team-composition">Track Goals &amp; Team Composition</h3>
+<p><strong>Recommended composition:</strong> 6 CS + 1 Design + 1 Art — a stylized, watchable farm world (animated animals, crops, weather touches) is exactly the Simulator case where 1 artist is justified.</p>
+<div style="background:#F5F0FA;border-left:4px solid #7E57C2;padding:6px 12px;margin:10px 0 4px;border-radius:4px"><b>Track goals</b> — suggested Design/Art picks and TEAM notes for this project; deliverables &amp; quality ladders live in the Design, Art and TEAM pool documents.<ul style="margin:4px 0 0"><li><b>Design M1:</b><ul><li>D1 ⭐ Simulation Product DD — the farm model, who reads the profit insights and for what decisions, fidelity-vs-charm trade-offs</li><li>D2 Prototype — configure a season → run → read profit results, clickable end to end</li><li>TU1 ⭐ UI Standards &amp; Wireframe Baseline — run-view and report flows, mobile-web readability standards</li></ul></li><li><b>Design M2:</b><ul><li>D1 ⭐ UX validation with users interpreting season reports; final polished UI on mobile web</li><li>D6 Polished experiment — one full season + species-comparison batch, end to end for the showcase</li><li>TU1 ⭐ Functional UI &amp; Usability — Simulator screens: scenario select · run view with pause/speed · season/batch report · settings · help; Resume/Quit apply to run sessions</li></ul></li><li><b>Art M1:</b><ul><li>A1 ⭐ (mockups: farm live view + season report screen)</li><li>A2 Agent sprites — animal/crop/tree sprites with readable growth stages</li></ul></li><li><b>Art M2:</b><ul><li>A1 ⭐ Critical asset set in the showcase build</li><li>A3 Living farm — ambient motion (grazing, swaying crops, weather) that makes the sim watchable</li></ul></li><li><b>TEAM M1:</b><ul><li>TA1 ⭐ Audio Direction &amp; Plan — farm ambience direction + event-cue needs list (season start/end, harvest, low-cash alert, animal events)</li></ul></li><li><b>TEAM M2:</b><ul><li>TA1 ⭐ Audio Integration &amp; Quality — Simulator floor: BGM optional (ambient bed); ≥5 distinct event cues (run start/stop, harvest, alert, completion), non-intrusive and legible</li><li>TP1 ⭐ Final Presentation — 7 min in front of class + instructors: live custom-tools showcase, prototype demo, team post-mortem (wk14)</li></ul></li></ul></div>
+
+<hr />
+<p><em>Generated by the Project Proposal Assessor skill · grounding: live folder · references verified 2026-07-05 · track goals &amp; unified workbooks retrofitted 2026-07-12.</em></p>
+</body>
+</html>

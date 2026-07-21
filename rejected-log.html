@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Rejected Proposals</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style type="text/css">body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;max-width: 900px; margin: 0 auto; padding: 24px 32px; color: #1f2328; line-height: 1.55; }h1, h2 { border-bottom: 1px solid #d1d9e0; padding-bottom: 6px; }h2 { margin-top: 28px; } h3 { margin-top: 24px; color: #1f2328; }table { border-collapse: collapse; width: 100%; margin: 14px 0; display: block; overflow-x: auto; }th, td { border: 1px solid #d1d9e0; padding: 6px 12px; text-align: left; }th { background: #f6f8fa; font-weight: 600; }tr:nth-child(even) td { background: #f6f8fa; }code { background: #f0f1f3; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }a { color: #0969da; text-decoration: none; } a:hover { text-decoration: underline; }img { max-width: 100%; border: 1px solid #d1d9e0; border-radius: 6px; }li { margin: 3px 0; }</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Rejected Proposals</h1>
+</header>
+<h1 id="rejected-proposals">Rejected Proposals</h1>
+<p>Proposals rejected by the Project Proposal Assessor (advisory — the instructor remains the approval gate).</p>
+<hr />
+<p><strong>VR Boxing Match</strong> · assessed 2026-07-05 · rejection type (a) — fails module core requirements</p>
+<p><em>Proposal:</em> A VR fighting game where 2 players fight each other in a boxing match, using VR controllers, in a 3D scene with fully animated characters.</p>
+<p><em>Reason:</em> The proposal is built on requirements the module excludes. (1) <strong>VR hardware is not a target platform</strong> — the module targets Native PC, Native mobile, and web browser on mobile (see Introduction / Appendix F); VR headsets and controllers require OpenXR integration, stereo rendering and 90 Hz frame budgets that the low-level-library constraint (bare SDL2/OpenGL, no engines) puts far beyond a second-year team. (2) <strong>3D with fully animated characters is mandatory to the concept</strong>, while the module allows 3D only as an optional extra for strong students — &quot;graphical output mostly 2D&quot;. The core promise cannot survive without both, so this is a module-fit failure, not a category mismatch.</p>
+<p><em>Nearest category &amp; resubmission path:</em> <strong>Games.</strong> Reshape as a <strong>2D fighting/boxing game</strong> — side-view ring, sprite-animated fighters, deterministic fixed-tick combat loop (hitboxes, stamina, knockdowns), local 2-player on one device or networked 1v1 (Games pool M1 G11 / M2 G7), fight editor as the custom tool, and the category&#39;s Replay System purple requirement is a natural fit (round replays, KO highlights). That version would likely assess as ✅ Fit.</p>
+<hr />
+<p><strong>Drink Health Scanner</strong> · assessed 2026-07-06 · rejection type (a) — fails module core requirements</p>
+<p><em>Proposal:</em> A mobile app that uses the camera to recognize a juice/drink bottle&#39;s brand and category, then shows the user health facts about that drink, fetched from online resources through a local LLM model.</p>
+<p><em>Reason:</em> The load-bearing technology is the wrong kind for this module. (1) Brand/category recognition realistically means running a <strong>pretrained vision model</strong>, and the &quot;local LLM&quot; delegates the product&#39;s substance to another pretrained black box — the same failure mode as &quot;Firebase swallows the backend&quot;: the students&#39; C++ becomes inference glue, not engineered core technology, and pretrained ML stacks are not in the spirit of the low-level-libraries constraint (SDL2/OpenGL/FMOD/ImGui/FreeType, built-by-you engineering). (2) With recognition and content generation delegated, the <strong>real-time C++ simulation loop is decorative</strong>, the <strong>2D graphical output</strong> is a standard mobile UI (camera view + info cards), and there is <strong>no natural custom tool</strong>. (3) Architectural confusion aside (&quot;fetched from online resources, through a local LLM&quot;), LLM-generated <em>health claims</em> are also a correctness liability no curated data source would carry.</p>
+<p><em>Nearest category &amp; resubmission path:</em> <strong>Education + Training.</strong> Reshape as a <strong>nutrition education app with a custom-built scanner</strong>: implement <strong>EAN-13 barcode decoding from live camera frames in C++</strong> — classic image processing (thresholding, scanline decoding) that students can genuinely build, making the per-frame camera pipeline a load-bearing real-time loop; look the product up in a <strong>curated nutrition database</strong> (data-driven architecture, no LLM, no invented health claims); wrap it in lessons/quizzes about sugar content and nutrition (the education engine); and build a <strong>teacher/content editor</strong> for facts, quizzes, and product entries (the custom tool, M2 G2). Firebase syncs content and progress. Platform fit: Native mobile on the reference phone (Pixel 8a/9a) — the camera requirement makes it native by necessity. That version would likely assess as 🔶 Fit with adjustments.</p>
+</body>
+</html>

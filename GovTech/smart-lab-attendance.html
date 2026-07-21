@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Smart Lab Attendance</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style type="text/css">body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;max-width: 900px; margin: 0 auto; padding: 24px 32px; color: #1f2328; line-height: 1.55; }h1, h2 { border-bottom: 1px solid #d1d9e0; padding-bottom: 6px; }h2 { margin-top: 28px; } h3 { margin-top: 24px; color: #1f2328; }table { border-collapse: collapse; width: 100%; margin: 14px 0; display: block; overflow-x: auto; }th, td { border: 1px solid #d1d9e0; padding: 6px 12px; text-align: left; }th { background: #f6f8fa; font-weight: 600; }tr:nth-child(even) td { background: #f6f8fa; }code { background: #f0f1f3; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }a { color: #0969da; text-decoration: none; } a:hover { text-decoration: underline; }img { max-width: 100%; border: 1px solid #d1d9e0; border-radius: 6px; }li { margin: 3px 0; }</style>
+</head>
+<body>
+<div style="text-align:right;margin:0 0 14px"><a href="smart-lab-attendance.docx" download style="display:inline-block;background:#2E7D32;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as Word (.docx)</a><a href="smart-lab-attendance.pdf" download style="display:inline-block;background:#C62828;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as PDF (.pdf)</a></div>
+<header id="title-block-header">
+<h1 class="title">Smart Lab Attendance</h1>
+</header>
+<p><a href="../index.html">← Back to index</a></p>
+<h2 id="smart-lab-attendance-student-proposal">Smart Lab Attendance <em>(student proposal)</em></h2>
+<div style="background:#F6F8FA;border-left:4px solid #57606A;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Assessment:</b> 🔶 Fit with adjustments · <b>Category:</b> GovTech · <b>Assessed:</b> 2026-07-06 · <b>Status:</b> awaiting instructor approval</div>
+
+<p><strong>Proposal (as submitted):</strong> An app for teachers that automatically registers lab-class attendance using indoor-capable mobile technology (something better than GPS indoors). The app knows the module schedule, is installed on students&#39; phones, and notifies the respective instructors of attendance at the end of each session.</p>
+<p><strong>Adjustments required for approval:</strong></p>
+<ul>
+<li><strong>The presence-detection engine must be built, not borrowed.</strong> Recommended technology: <strong>ultrasonic audio beacons</strong> — a speaker in the lab emits coded, near-inaudible chirps, and each student phone detects them with the team&#39;s own C++ DSP (FFT / matched filtering over the microphone stream). This is real, module-legal engineering (audio capture + custom C++ signal processing) and makes the real-time high-frequency loop genuinely load-bearing. BLE RSSI scanning may be fused in as a second signal, with custom filtering/smoothing in C++ — but calling an OS &quot;am I near this beacon?&quot; API alone would leave the C++ decorative.</li>
+<li><strong>A cohort/presence simulator must drive development</strong> (GovTech pool M1 G14): simulated student devices with signal models and arrival/departure behavior — the team cannot demo with 30 physical phones, and seeded scenarios make detection accuracy testable.</li>
+<li><strong>Attendance decisions computed in the C++ service</strong> — session windows from the schedule, presence-confidence scoring, late/left-early detection — with Firebase used only for record sync and instructor notifications, not as the decision engine.</li>
+<li><strong>Privacy by design as an explicit requirement:</strong> informed consent in the student app, data minimization (presence-in-room during scheduled sessions only — no location tracking), and a stated retention policy. The category&#39;s RBAC &amp; audit requirement reinforces this: every record and correction is attributable.</li>
+</ul>
+<p><em>References:</em></p>
+<ul>
+<li><a href="https://developer.apple.com/ibeacon/">Apple iBeacon — indoor proximity technology (developer docs)</a></li>
+<li><a href="https://developer.android.com/develop/connectivity/wifi/wifi-rtt">Android Wi-Fi RTT — indoor ranging API (developer docs)</a></li>
+<li><a href="https://tophat.com/">Top Hat — classroom platform with automated attendance</a></li>
+</ul>
+<h3 id="core-tech-requirements">Core Tech Requirements</h3>
+<p>Legend: ✅ Applies directly | 🔶 Applies with domain adaptation | 🔵 Optional | ❌ Not needed | ⏭️ Second trimester</p>
+<table>
+<thead>
+<tr class="header">
+<th>Core Tech Requirement</th>
+<th>Smart Lab Attendance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>External Database (Firebase)</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Authentication ⏭️</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Analytics ⏭️</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>C++ Performant Service</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Real-time C++ Simulation Loop</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Application Communication</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Continuous Integration</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Data-Driven Architecture</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Front-end + Local Backend</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Custom Tools Development</td>
+<td>🔶</td>
+</tr>
+<tr class="odd">
+<td>2D Graphical Output</td>
+<td>🔶</td>
+</tr>
+<tr class="even">
+<td>3D (strong students only)</td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>Networking System</td>
+<td>🔵</td>
+</tr>
+<tr class="even">
+<td><span style="color:#8E44AD"><strong>RBAC &amp; Audit Logging</strong> — roles + immutable action trail (new)</span></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How each requirement applies:</strong></p>
+<div style="background:#EAF3FF;border-left:4px solid #0969DA;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><i>Platform fit:</i> <b>Native mobile + Web browser on mobile</b> — the student app must be native (microphone/BLE access; reference phone Pixel 8a/9a); instructors view live class state and reports on mobile web. Native PC is the development vehicle.</div>
+
+<div style="background:#E8F5E9;border-left:4px solid #2E7D32;padding:6px 12px;margin:4px 0 4px;border-radius:4px"><b>Front end:</b> Student app (consent, session status, my-attendance view), instructor view (live class presence timeline, end-of-session summary). <b>Languages:</b> C++, GLSL; HTML/JS/CSS (instructor web view via WASM).</div>
+
+<div style="background:#FFF3E0;border-left:4px solid #E65100;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Back end:</b> Presence-detection DSP engine, attendance decision engine (session windows, confidence), cohort simulator, audit log, Firebase sync &amp; notifications. <b>Languages:</b> C++.<br><b>Backend scope:</b> Server-indicated (T2) — a class shares live attendance state; Firebase bridges T1, an authoritative attendance service is the T2 path.</div>
+
+<ul>
+<li><em>Simulation loop:</em> the detection engine — continuous microphone capture with FFT/matched-filter chirp detection at audio rate (plus optional BLE RSSI filtering), feeding a per-session presence state machine. This is the project&#39;s engineering heart.</li>
+<li><em>Data-driven:</em> module schedules, rooms, beacon chirp codes, cohorts and detection thresholds all defined as data; a new module or room is a data change.</li>
+<li><em>Custom tool (adapted):</em> schedule/room/beacon configuration editor — sessions, rooms, chirp code assignments, cohort rosters.</li>
+<li><em>External DB:</em> attendance records and instructor notifications. <em>Auth:</em> applies directly — student/instructor/admin roles. <em>Analytics ⏭️:</em> attendance trends per module/cohort.</li>
+<li><em>2D (adapted):</em> custom-rendered live presence timeline (who arrived when, confidence bands) and attendance charts — not just tables.</li>
+<li><em>Networking:</em> 🔵 BLE scanning as a secondary signal; instructor live view updates via Firebase in T1.</li>
+<li><span style="color:#8E44AD"><em>RBAC &amp; audit logging:</em></span> students see only their own records; instructors see their modules; every automated mark and every manual correction lands in an immutable audit trail — the integrity story of an attendance system.</li>
+</ul>
+<h3 id="suggested-tech-goals">Suggested Tech Goals</h3>
+<p>G1–G3 ⭐ are the common goals (fixed for all categories); the other 3 are picked from the GovTech pool in <code>milestone-goals-pool-per-category.md</code> (G1–G3 ⭐ common, G4+ picks).</p>
+<p><em>M1:</em></p>
+<ul>
+<li><strong>G1 ⭐ Application Shell, Real-time C++ Simulation Loop, Input &amp; Core Logic</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> SDL2 shell (PC dev build) and Android app shell sharing one C++ core; a real-time capture loop pulls microphone frames continuously and drives the presence state machine; C++17/20, CMake, Git.</li><li><b>Prerequisites:</b> None — foundation of this project.</li><li><b>Feeds into:</b> Every other goal; the detection DSP (proposed goal below) and M1 G4 ingest run inside this loop.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Data-Driven Architecture of Core Objects / Entity System</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Schedules, rooms, chirp-code assignments, cohorts and detection thresholds fully described in JSON (nlohmann/json) with hot-reload; nothing institution-specific hardcoded.</li><li><b>Prerequisites:</b> G1 (loop &amp; hooks).</li><li><b>Feeds into:</b> M1 G14 (scenario definitions), M2 G2 (editor edits this data), M2 G15 (timetable import fills it).</li></ul></details>
+</li>
+<li><strong>G3 ⭐ Debugging, Profiling, Stress Test &amp; CI</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> ImGui overlays (detection confidence, SNR, callback load), Tracy profiling of the DSP path, Catch2 tests running detection over recorded audio fixtures (deterministic), GitHub Actions Windows+Linux matrix.</li><li><b>Prerequisites:</b> G1 (loop to instrument).</li><li><b>Feeds into:</b> M2 G3; the recorded-fixture tests guard every DSP change against accuracy regressions.</li></ul></details>
+</li>
+<li><strong>G4 Real-time Feed / Queue Engine</strong> — ordered, idempotent ingest of presence events into per-session attendance state.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Ordered event queue (detected/lost/re-detected per student) with idempotent processing — a re-sent event never double-marks; running per-session attendance state derived from the stream.</li><li><b>Prerequisites:</b> G1 (loop), G2 (session/cohort model).</li><li><b>Feeds into:</b> the end-of-session summary &amp; instructor notification (absorbed into this goal&#39;s definition of done), M2 G7 (every event auditable), the live instructor timeline.</li></ul></details>
+</li>
+<li><strong>G14 Domain Simulation Core</strong> — the cohort/presence simulator (adjustment 2) that makes the system developable and testable.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Seeded simulated cohorts — arrival/departure behavior, signal-strength models, edge cases (late arrival, brief exit, phone in bag) — generating the event stream M1 G4 ingests.</li><li><b>Prerequisites:</b> G1 (clock), G2 (cohort/scenario data).</li><li><b>Feeds into:</b> All development and demos; detection-accuracy metrics vs simulated ground truth.</li></ul></details>
+</li>
+<li><strong>G17 Presence &amp; Signal Detection Engine</strong> — the project&#39;s engineering heart (adjustment 1), added to the GovTech pool from this proposal.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Real-time DSP over the microphone stream — coded ultrasonic chirp detection via FFT/matched filtering — optionally fused with BLE RSSI filtering (smoothing, hysteresis); presence events with confidence scores, all custom C++.</li><li><b>Prerequisites:</b> G1 (capture loop), G2 (chirp codes &amp; thresholds as data).</li><li><b>Feeds into:</b> M1 G4 (its events are what the queue ingests); detection accuracy measured against M1 G14 ground truth.</li></ul></details>
+</li>
+</ul>
+<p><em>(Note:</em> the end-of-session instructor notification — formerly pick G12 — is absorbed into <strong>G4</strong>&#39;s definition of done: once per-session state exists, closing a session and dispatching the Firebase summary is a thin slice. The freed slot goes to the detection engine.)</p>
+<p><em>M2:</em></p>
+<ul>
+<li><strong>G1 ⭐ Architecture — Optimization &amp; Platform Validation</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Tracy on the DSP path, battery- and background-behavior validation on the reference phone (Pixel 8a/9a), ASan on MSVC for the PC dev build; interruption handling (calls, screen-off) proven.</li><li><b>Prerequisites:</b> All M1 goals.</li><li><b>Feeds into:</b> A student app that survives a real 2-hour lab session without draining the battery or losing the session.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Content Editor — Core</strong> — the schedule/room/beacon configuration editor.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Editor for module sessions, rooms, chirp-code assignments and cohort rosters with JSON round-trip and an undo/redo command stack.</li><li><b>Libraries/Software:</b> Dear ImGui, nlohmann/json</li><li><b>Prerequisites:</b> M1 G2 (data model).</li><li><b>Feeds into:</b> Every configured module; M2 G15 imports feed it, M2 G7 audits its changes.</li></ul></details>
+</li>
+<li><strong>G3 ⭐ CI — CMake, Code Quality, Build Standards &amp; Packaging</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> CMake presets, clang-format + clang-tidy gates, GitHub Actions producing the PC build, the APK and the instructor WASM view; detection-accuracy regression suite on recorded fixtures.</li><li><b>Prerequisites:</b> M1 G3.</li><li><b>Feeds into:</b> Release builds; accuracy must not regress for CI to pass.</li></ul></details>
+</li>
+<li><strong>G7 RBAC &amp; Audit Logging</strong> — the category&#39;s purple requirement, and this product&#39;s integrity backbone.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Roles (student / instructor / admin) enforced across app, editor and records; append-only audit trail of every automated mark and manual correction with actor + timestamp; audit viewer.</li><li><b>Prerequisites:</b> M1 G4 (events), Firebase Auth.</li><li><b>Feeds into:</b> The trust story: show a disputed mark, then show its full history.</li></ul></details>
+</li>
+<li><strong>G11 Reports &amp; Transparency Dashboards</strong> — attendance reports per module, cohort and term.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Custom-rendered attendance charts (per-module trends, per-student summaries, session heat strips) and exportable reports consistent with the audit trail.</li><li><b>Prerequisites:</b> M1 G4 (records), M2 G7 (audited data).</li><li><b>Feeds into:</b> What instructors and admins actually consume at term end.</li></ul></details>
+</li>
+<li><strong>G15 Data Import / Export &amp; Interop</strong> — the proposal&#39;s &quot;app gets the schedule of a module&quot;.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Timetable import (CSV/iCal) into the schedule model with validation and clear error reporting; attendance export (CSV) for administrative systems.</li><li><b>Prerequisites:</b> M1 G2 (schedule model), M2 G2 (editor to review imports).</li><li><b>Feeds into:</b> Real-world fit — no manual re-typing of the semester timetable.</li></ul></details>
+</li>
+</ul>
+<h3 id="track-goals--team-composition">Track Goals &amp; Team Composition</h3>
+<p><strong>Recommended composition:</strong> 6 CS + 2 Design + 0 Art — utility civic product with a low art surface; 0 artists (Design conditionals mandatory), so the second designer slot is strongly advised (used below).</p>
+<div style="background:#F5F0FA;border-left:4px solid #7E57C2;padding:6px 12px;margin:10px 0 4px;border-radius:4px"><b>Track goals</b> — suggested Design/Art picks and TEAM notes for this project; deliverables &amp; quality ladders live in the Design, Art and TEAM pool documents.<ul style="margin:4px 0 0"><li><b>Design M1:</b><ul><li>D1 ⭐ Service DD — student check-in side + instructor dashboard blueprint, privacy-by-design mandate</li><li>D2 Prototype — arrive → detected → confirmed → instructor view, both roles clickable</li><li>D5 Form &amp; status ergonomics — presence states, privacy indicators (detection on/off), consent flows</li><li>D11 Art POC (conditional — no artist) — calm utility styling, iconography, status color system</li><li>TU1 ⭐ UI Standards &amp; Wireframe Baseline — the D5 presence/privacy conventions are assessed in this review</li></ul></li><li><b>Design M2:</b><ul><li>D1 ⭐ UX validation + final polished UI</li><li>D6 Service polished — session start → detection → attendance log → instructor notification, end to end</li><li>D8 Status &amp; notification pass — clarity at every state change (detected / missed / manual override)</li><li>D11 Art Implementation Quality (conditional)</li><li>TU1 ⭐ Functional UI &amp; Usability — GovTech screens: student check-in view · instructor live dashboard · session history · settings · help; both roles navigable unaided</li></ul></li><li><b>Art:</b> 0 artists — the Design conditionals (M1 D11 Art POC / M2 D11 Art Implementation Quality) cover the art surface.</li><li><b>TEAM M1:</b><ul><li>TA1 ⭐ Audio Direction &amp; Plan — <b>coordination note:</b> the near-ultrasonic detection chirps are engineering (CS G17); TA1 owns the audible feedback layer (check-in confirm, session cues) and must keep cue frequencies clear of the chirp band</li></ul></li><li><b>TEAM M2:</b><ul><li>TA1 ⭐ Audio Integration &amp; Quality — GovTech floor: no BGM; ≥5 cues (check-in confirmed, session start/end, error, override), visual pairs for every cue, frequency-coordinated with G17</li><li>TP1 ⭐ Final Presentation — 7 min in front of class + instructors: live custom-tools showcase, prototype demo, team post-mortem (wk14)</li></ul></li></ul></div>
+
+<hr />
+<p><em>Generated by the Project Proposal Assessor skill · grounding: live folder · references verified 2026-07-06 · track goals &amp; unified workbooks retrofitted 2026-07-12.</em></p>
+</body>
+</html>

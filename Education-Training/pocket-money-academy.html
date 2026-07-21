@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Pocket Money Academy</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style type="text/css">body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;max-width: 900px; margin: 0 auto; padding: 24px 32px; color: #1f2328; line-height: 1.55; }h1, h2 { border-bottom: 1px solid #d1d9e0; padding-bottom: 6px; }h2 { margin-top: 28px; } h3 { margin-top: 24px; color: #1f2328; }table { border-collapse: collapse; width: 100%; margin: 14px 0; display: block; overflow-x: auto; }th, td { border: 1px solid #d1d9e0; padding: 6px 12px; text-align: left; }th { background: #f6f8fa; font-weight: 600; }tr:nth-child(even) td { background: #f6f8fa; }code { background: #f0f1f3; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }a { color: #0969da; text-decoration: none; } a:hover { text-decoration: underline; }img { max-width: 100%; border: 1px solid #d1d9e0; border-radius: 6px; }li { margin: 3px 0; }</style>
+</head>
+<body>
+<div style="text-align:right;margin:0 0 14px"><a href="pocket-money-academy.docx" download style="display:inline-block;background:#2E7D32;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as Word (.docx)</a><a href="pocket-money-academy.pdf" download style="display:inline-block;background:#C62828;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as PDF (.pdf)</a></div>
+<header id="title-block-header">
+<h1 class="title">Pocket Money Academy</h1>
+</header>
+<p><a href="../index.html">← Back to index</a></p>
+<h2 id="pocket-money-academy-student-proposal">Pocket Money Academy <em>(student proposal)</em></h2>
+<div style="background:#F6F8FA;border-left:4px solid #57606A;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Assessment:</b> 🔶 Fit with adjustments · <b>Category:</b> Education + Training · <b>Assessed:</b> 2026-07-10 · <b>Status:</b> awaiting instructor approval</div>
+
+<p><strong>Proposal (as submitted):</strong> A fintech app that appeals to 6–12 year olds, teaching the fundamentals of financial management.</p>
+<p><em>Category note:</em> proposed as Fintech, but the product&#39;s core promise is <strong>teaching</strong> — learners (kids) and authors (parents/teachers) are the first-class roles, so it belongs in <strong>Education + Training</strong> (runner-up: Fintech). Fintech&#39;s signature demands (precision, high-frequency feeds, auditability) are not what this app is about; an interactive teaching engine is.</p>
+<p><strong>Adjustments required for approval:</strong></p>
+<ul>
+<li>The teaching core must be a <strong>load-bearing C++ simulated pocket-money economy</strong> — allowance accrual, chore rewards, shop prices, savings interest and life events ticking in a rendered, animated 2D world — not quiz screens or form-based lessons. Without this, the real-time loop is decorative and the project collapses into CRUD.</li>
+<li><strong>Virtual money only</strong> — no real banking, cards or payment rails (that is licensed-fintech territory, cf. Greenlight/Acorns Early); the module has no path to real-money handling.</li>
+<li><strong>Child privacy by design</strong> — parent-created accounts, no child emails/real names/PII in Firebase, COPPA-style data minimization (Bankaroo&#39;s model).</li>
+<li>The parent/teacher role must be first-class: the M2 content editor authors missions, shop catalogs and <strong>age-banded scenarios (6–8 / 9–12)</strong> — the engineering must outweigh the lesson library.</li>
+</ul>
+<p><em>References:</em></p>
+<ul>
+<li><a href="https://www.bankaroo.com/">Bankaroo — virtual bank for kids (official)</a></li>
+<li><a href="https://greenlight.com/">Greenlight — debit card &amp; money app for kids (official)</a></li>
+<li><a href="https://www.acorns.com/early/">Acorns Early, formerly GoHenry (official)</a></li>
+</ul>
+<h3 id="core-tech-requirements">Core Tech Requirements</h3>
+<p>Legend: ✅ Applies directly | 🔶 Applies with domain adaptation | 🔵 Optional | ❌ Not needed | ⏭️ Second trimester</p>
+<table>
+<thead>
+<tr class="header">
+<th>Core Tech Requirement</th>
+<th>Pocket Money Academy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>External Database (Firebase)</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Authentication ⏭️</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Analytics ⏭️</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>C++ Performant Service</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Real-time C++ Simulation Loop</td>
+<td>🔶</td>
+</tr>
+<tr class="even">
+<td>Application Communication</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Continuous Integration</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Data-Driven Architecture</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Front-end + Local Backend</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Custom Tools Development</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>2D Graphical Output</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>3D (strong students only)</td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>Networking System</td>
+<td>🔵</td>
+</tr>
+<tr class="even">
+<td><span style="color:#8E44AD"><strong>Localization &amp; Content Pipeline</strong> — multi-language content with hot-reload (new)</span></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How each requirement applies:</strong></p>
+<div style="background:#EAF3FF;border-left:4px solid #0969DA;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><i>Platform fit:</i> <b>Native mobile (reference device: Google Pixel 8a / 9a) + Native PC (authoring)</b> — kids play touch-first on a phone; the parent/teacher mission &amp; economy editor runs on the PC authoring side of the role split.</div>
+
+<div style="background:#E8F5E9;border-left:4px solid #2E7D32;padding:6px 12px;margin:4px 0 4px;border-radius:4px"><b>Front end:</b> Animated 2D town/shop view (sprite characters, coin/jar animations), savings-goal visualizations, kid-readable custom-rendered charts, icon-first reading-light UI. <b>Languages:</b> C++, GLSL.</div>
+
+<div style="background:#FFF3E0;border-left:4px solid #E65100;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Back end:</b> Pocket-money economy engine (allowance scheduler, price drift, compound interest, chore/event system), mission &amp; assessment system, Firebase progress and family sync. <b>Languages:</b> C++.<br><b>Backend scope:</b> Local now, server-ready (T2) — a classroom edition (teacher-hosted shared class economy, cf. Bankaroo for Schools) could lift the economy service onto the T2 server.</div>
+
+<ul>
+<li><em>Simulation loop:</em> fixed-timestep economy — allowance accrues, shop prices drift, savings earn compound interest, chores and life events (birthday money, broken toy) fire — driving the animated town the kid lives in.</li>
+<li><em>Data-driven:</em> missions, shop items, price/interest tables, events and age-band curricula (6–8 / 9–12) all defined as JSON data.</li>
+<li><em>Custom tool:</em> mission &amp; economy editor — parents/teachers author missions, shop catalogs and scenario parameters.</li>
+<li><em>External DB:</em> progress, savings goals and badges synced per kid. <em>Auth ⏭️:</em> parent accounts owning PII-free kid profiles. <em>Analytics ⏭️:</em> learning insights per money concept (saving, budgeting, interest).</li>
+<li><em>2D:</em> animated town/shop rendering plus custom kid-readable charts (money jars, goal thermometers) — no chart libraries. <em>3D:</em> not needed. <em>Networking:</em> optional — family fund transfers ride on Firebase.</li>
+<li><span style="color:#8E44AD"><em>Localization pipeline:</em></span> kid content is text- and audio-heavy — language packs and age-band packs are hot-swappable data, never code.</li>
+</ul>
+<h3 id="suggested-tech-goals">Suggested Tech Goals</h3>
+<p>G1–G3 ⭐ are the common goals (fixed for all categories); the other 3 are picked from the Education + Training pool in <code>milestone-goals-pool-per-category.md</code> (G1–G3 ⭐ common, G4+ picks).</p>
+<p><em>M1:</em></p>
+<ul>
+<li><strong>G1 ⭐ Application Shell, Real-time C++ Simulation Loop, Input &amp; Core Logic</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> SDL2 window/touch/mouse input with a fixed-timestep loop driving the economy tick and town animation; time acceleration (day/week fast-forward) for demos; C++17/20, CMake, Git.</li><li><b>Prerequisites:</b> None — foundation of this project.</li><li><b>Feeds into:</b> Every other goal; M1 G11&#39;s economy and M1 G9&#39;s UI states tick inside this loop.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Data-Driven Architecture of Core Objects / Entity System</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Kid profile, accounts, shop items, missions, events and age-band curricula fully described in JSON (nlohmann/json) with hot-reload for rapid content tuning.</li><li><b>Prerequisites:</b> G1 (loop &amp; update hooks).</li><li><b>Feeds into:</b> M1 G8 (mission format), M1 G11 (economy parameters), M2 G2 (editor edits this data), purple localization pipeline.</li></ul></details>
+</li>
+<li><strong>G3 ⭐ Debugging, Profiling, Stress Test &amp; CI</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> ImGui overlays (economy totals, event queue, tick ms), Tracy profiling, Catch2 stress tests fast-forwarding years of simulated allowance/interest/events in seconds with balance-invariant checks, GitHub Actions Windows+Linux matrix.</li><li><b>Prerequisites:</b> G1 (loop to instrument).</li><li><b>Feeds into:</b> M2 G3 (CI hardening); the determinism checks that make savings math trustworthy for kids and parents.</li></ul></details>
+</li>
+<li><strong>G11 Domain Simulation Core</strong> — the pocket-money economy itself: allowance scheduler, chore rewards, price drift, compound interest, life events — the load-bearing sim required by adjustment 1.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Per-tick economy state machine (earn/save/spend/donate flows, interest compounding, event generator) with seeded RNG so a scenario replays identically.</li><li><b>Prerequisites:</b> G1 (fixed timestep), G2 (economy parameters as data).</li><li><b>Feeds into:</b> All money lessons; M1 G8 missions evaluate against this economy; M2 G12 rewards hook its events.</li></ul></details>
+</li>
+<li><strong>G8 Lesson / Exercise Content System</strong> — missions (&quot;save for the bike&quot;, &quot;budget the week&quot;, &quot;wants vs. needs at the shop&quot;) as a data-driven curriculum with 6–8 / 9–12 age bands.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Mission schema (goal, constraints, success criteria, age band, reward) with validation and a progression graph unlocking concepts in order.</li><li><b>Prerequisites:</b> G2 (data model), M1 G11 (economy to evaluate missions against).</li><li><b>Feeds into:</b> M2 G2 (editor authors missions), M2 G7 (progress per mission), M2 G12 (badges on completion).</li></ul></details>
+</li>
+<li><strong>G9 Learner UI / UX System</strong> — reading-light, icon-first flows for 6–8 and richer flows for 9–12; celebration and feedback states kids understand.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Screen-flow system (town, shop, savings jar, missions) with age-band layouts, large touch targets, audio cues and FreeType text sized for early readers.</li><li><b>Prerequisites:</b> G1 (input &amp; render loop), G2 (age bands as data).</li><li><b>Feeds into:</b> M2 G4 (visual polish), M2 G14-style mobile ergonomics validated in M2 G1.</li></ul></details>
+</li>
+</ul>
+<p><em>M2:</em></p>
+<ul>
+<li><strong>G1 ⭐ Architecture — Optimization &amp; Platform Validation</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Tracy-guided optimization of economy tick and sprite batching; ASan on MSVC; showcase build validated on the reference phone (Pixel 8a/9a) for touch latency, battery and 60 fps town animation.</li><li><b>Prerequisites:</b> All M1 goals (hardens the M1 codebase).</li><li><b>Feeds into:</b> The mobile showcase build every other M2 goal demos on.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Content Editor — Core</strong> — the mission &amp; economy editor: parents/teachers author missions, shop catalogs, price/interest tables and age-band scenarios.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Desktop authoring tool (PC, authoring side of the role split) editing missions, shop items and economy tables with JSON round-trip, undo/redo command stack and live preview in the project&#39;s town view.</li><li><b>Libraries/Software:</b> Dear ImGui, nlohmann/json, project&#39;s SDL2/OpenGL town renderer (live preview)</li><li><b>Prerequisites:</b> M1 G2 (data model), M1 G8 (mission schema), M1 G11 (economy parameters).</li><li><b>Feeds into:</b> Every authored scenario; makes the parent/teacher role first-class (adjustment 4).</li></ul></details>
+</li>
+<li><strong>G3 ⭐ CI — CMake, Code Quality, Build Standards &amp; Packaging</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> CMake presets, clang-format + clang-tidy gates, packaging of the mobile showcase build and the PC authoring tool, GitHub Actions matrix with an economy-determinism smoke test.</li><li><b>Prerequisites:</b> M1 G3 (CI and test foundation).</li><li><b>Feeds into:</b> Release/showcase builds; guards M1 G11&#39;s seeded reproducibility.</li></ul></details>
+</li>
+<li><strong>G4 2D Graphics — Advanced</strong> — animated money jars, goal thermometers, celebration effects and kid-readable custom charts: the visual language that makes money concepts land at age 6.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Sprite animation system (coin flights, jar fills, confetti), custom-rendered progress/history charts with kid-friendly scales, GPU batching for the town scene.</li><li><b>Prerequisites:</b> M1 G9 (UI flows), M2 G1 (mobile frame budget).</li><li><b>Feeds into:</b> The showcase demo&#39;s wow factor; M2 G12&#39;s reward moments.</li></ul></details>
+</li>
+<li><strong>G7 Firebase — Accounts, Progress Sync &amp; Teacher Dashboards</strong> — the parent dashboard: progress per money concept, goal history and mission results, on PII-free kid profiles.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Firebase Auth for parents owning nickname-only kid profiles (COPPA-style minimization), Firestore sync of progress/goals/badges, parent dashboard views.</li><li><b>Prerequisites:</b> M1 G8 (mission results to sync), M1 G11 (economy state snapshots).</li><li><b>Feeds into:</b> Adjustment 3 compliance; the T2 classroom-edition seam (backend scope).</li></ul></details>
+</li>
+<li><strong>G12 Gamification Systems</strong> — badges, streaks and goal celebrations: the engagement engine that keeps 6–12 year olds practicing money habits.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Badge/streak rules engine driven by economy and mission events, reward animations, collection screen; all badge definitions as data.</li><li><b>Prerequisites:</b> M1 G11 (economy events), M1 G8 (mission completions), M2 G4 (celebration visuals).</li><li><b>Feeds into:</b> Retention story at the showcase; M2 G7 syncs earned badges to the parent dashboard.</li></ul></details>
+</li>
+</ul>
+<h3 id="track-goals--team-composition">Track Goals &amp; Team Composition</h3>
+<p><strong>Recommended composition:</strong> 6 CS + 1 Design + 1 Art — a children&#39;s learning product has a mid-to-high art surface (mascot, exercise scenes); a 2nd artist is justified if the direction confirms animation-heavy mascot work (max 9, D+A ≤ 3).</p>
+<div style="background:#F5F0FA;border-left:4px solid #7E57C2;padding:6px 12px;margin:10px 0 4px;border-radius:4px"><b>Track goals</b> — suggested Design/Art picks and TEAM notes for this project; deliverables &amp; quality ladders live in the Design, Art and TEAM pool documents.<ul style="margin:4px 0 0"><li><b>Design M1:</b><ul><li>D1 ⭐ Learning Product DD — money-habit objectives for 6–12-year-olds, kid + parent/teacher personas, child-privacy mandate</li><li>D2 Prototype — one exercise loop (earn → save/spend → reflect) playable end to end</li><li>TU1 ⭐ UI Standards &amp; Wireframe Baseline — child-first flows plus separate parent/teacher entry</li></ul></li><li><b>Design M2:</b><ul><li>D1 ⭐ UX validation with real learners where possible; final polished UI</li><li>D6 Complete lesson unit — one pocket-money lesson polished end to end (intro → exercises → assessment → results)</li><li>TU1 ⭐ Functional UI &amp; Usability — Education screens: home/lesson select · in-exercise with pause · Resume/Quit (exact labels, confirmation) · results/progress · settings · how-to-play · separate child and parent/teacher entry points</li></ul></li><li><b>Art M1:</b><ul><li>A1 ⭐ Age-appropriate visual language (mockups: 2 exercise screens)</li><li>A2 Mascot — a money-buddy character with expression sheet (neutral / encouraging / corrective)</li></ul></li><li><b>Art M2:</b><ul><li>A1 ⭐ Exercise scenes, mascot set and feedback visuals in the showcase lesson</li><li>A2 Mascot reaction set — integrated with the feedback/celebration pass</li></ul></li><li><b>TEAM M1:</b><ul><li>TA1 ⭐ Audio Direction &amp; Plan — playful but focus-friendly; correct/incorrect/progress cues designed for kids</li></ul></li><li><b>TEAM M2:</b><ul><li>TA1 ⭐ Audio Integration &amp; Quality — Education floor: ≥1 BGM (focus-friendly, non-distracting) + ≥6 SFX with distinct correct/incorrect/progress cues mandatory</li><li>TP1 ⭐ Final Presentation — 7 min in front of class + instructors: live custom-tools showcase, prototype demo, team post-mortem (wk14)</li></ul></li></ul></div>
+
+<hr />
+<p><em>Generated by the Project Proposal Assessor skill · grounding: live folder · references verified 2026-07-10 · track goals &amp; unified workbooks retrofitted 2026-07-12.</em></p>
+</body>
+</html>

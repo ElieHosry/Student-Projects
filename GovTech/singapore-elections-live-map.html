@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Singapore Elections Live Map</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style type="text/css">body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;max-width: 900px; margin: 0 auto; padding: 24px 32px; color: #1f2328; line-height: 1.55; }h1, h2 { border-bottom: 1px solid #d1d9e0; padding-bottom: 6px; }h2 { margin-top: 28px; } h3 { margin-top: 24px; color: #1f2328; }table { border-collapse: collapse; width: 100%; margin: 14px 0; display: block; overflow-x: auto; }th, td { border: 1px solid #d1d9e0; padding: 6px 12px; text-align: left; }th { background: #f6f8fa; font-weight: 600; }tr:nth-child(even) td { background: #f6f8fa; }code { background: #f0f1f3; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }a { color: #0969da; text-decoration: none; } a:hover { text-decoration: underline; }img { max-width: 100%; border: 1px solid #d1d9e0; border-radius: 6px; }li { margin: 3px 0; }</style>
+</head>
+<body>
+<div style="text-align:right;margin:0 0 14px"><a href="singapore-elections-live-map.docx" download style="display:inline-block;background:#2E7D32;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as Word (.docx)</a><a href="singapore-elections-live-map.pdf" download style="display:inline-block;background:#C62828;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as PDF (.pdf)</a></div>
+<header id="title-block-header">
+<h1 class="title">Singapore Elections Live Map</h1>
+</header>
+<p><a href="../index.html">← Back to index</a></p>
+<h2 id="singapore-elections-live-map-student-proposal">Singapore Elections Live Map <em>(student proposal)</em></h2>
+<div style="background:#F6F8FA;border-left:4px solid #57606A;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Assessment:</b> 🔶 Fit with adjustments · <b>Category:</b> GovTech · <b>Assessed:</b> 2026-07-05 · <b>Status:</b> awaiting instructor approval</div>
+
+<p><strong>Proposal (as submitted):</strong> A world representing the Singapore map, showing an election preview for the various districts. Real-time feeds during election day: live vote counts, live results, and comparison of the various political parties&#39; results.</p>
+<p><strong>Adjustments required for approval:</strong></p>
+<ul>
+<li>A <strong>C++ election-feed simulator must drive the system</strong> (GovTech pool M1 G14): real election feeds won&#39;t be live during the trimester, so seeded, configurable vote-arrival scenarios (turnout curves, batch arrivals per district) are what make the real-time loop load-bearing and every demo reproducible.</li>
+<li>The map must be <strong>custom-rendered 2D</strong> — district polygons (e.g. from data.gov.sg GeoJSON boundaries) tessellated and drawn with the team&#39;s own OpenGL renderer, with choropleth coloring and animated transitions. Embedding a web map library would void the 2D requirement.</li>
+<li><strong>Tallies and projections computed in the C++ service</strong> — running counts, swing vs. baseline, winner projections — with Firebase used only for persistence and fan-out to viewers, not as the computation engine.</li>
+</ul>
+<p><em>References:</em></p>
+<ul>
+<li><a href="https://www.eld.gov.sg/">Elections Department Singapore — official, incl. electoral division maps</a></li>
+<li><a href="https://www.270towin.com/">270toWin — interactive election results maps</a></li>
+<li><a href="https://data.gov.sg/">data.gov.sg — Singapore open data portal (election datasets, GeoJSON boundaries)</a></li>
+</ul>
+<h3 id="core-tech-requirements">Core Tech Requirements</h3>
+<p>Legend: ✅ Applies directly | 🔶 Applies with domain adaptation | 🔵 Optional | ❌ Not needed | ⏭️ Second trimester</p>
+<table>
+<thead>
+<tr class="header">
+<th>Core Tech Requirement</th>
+<th>Singapore Elections Live Map</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>External Database (Firebase)</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Authentication ⏭️</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Analytics ⏭️</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>C++ Performant Service</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Real-time C++ Simulation Loop</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Application Communication</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Continuous Integration</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Data-Driven Architecture</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Front-end + Local Backend</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Custom Tools Development</td>
+<td>🔶</td>
+</tr>
+<tr class="odd">
+<td>2D Graphical Output</td>
+<td>🔶</td>
+</tr>
+<tr class="even">
+<td>3D (strong students only)</td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>Networking System</td>
+<td>🔵</td>
+</tr>
+<tr class="even">
+<td><span style="color:#8E44AD"><strong>RBAC &amp; Audit Logging</strong> — roles + immutable action trail (new)</span></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How each requirement applies:</strong></p>
+<div style="background:#EAF3FF;border-left:4px solid #0969DA;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><i>Platform fit:</i> <b>Web browser on mobile + Native PC (operator ops)</b> — public results viewing is web-first (WASM build); the operator/admin dashboard is the PC ops side.</div>
+
+<div style="background:#E8F5E9;border-left:4px solid #2E7D32;padding:6px 12px;margin:4px 0 4px;border-radius:4px"><b>Front end:</b> Choropleth Singapore map (district polygons, animated color transitions), party comparison charts, live results ticker. <b>Languages:</b> C++, GLSL (via WASM); HTML/JS/CSS shell.</div>
+
+<div style="background:#FFF3E0;border-left:4px solid #E65100;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Back end:</b> Election-feed simulator &amp; ingest engine, tally/projection engine, audit log, Firebase persistence &amp; fan-out. <b>Languages:</b> C++.<br><b>Backend scope:</b> Server-indicated (T2) — many viewers sharing one live result state; Firebase bridges T1, a real push server is the T2 path.</div>
+
+<ul>
+<li><em>Simulation loop:</em> the election-day engine — simulated vote batches arriving per district, ordered ingest, running tallies and projections recomputed continuously, map/charts animating in real time.</li>
+<li><em>Data-driven:</em> districts (boundary polygons), parties, candidates and feed scenarios all defined as data; swapping a scenario file replays a different election night.</li>
+<li><em>Custom tool (adapted):</em> election setup editor — districts, parties, candidates and feed scenarios.</li>
+<li><em>External DB:</em> result snapshots and viewer fan-out. <em>Auth:</em> operator/admin accounts (ties into the purple requirement). <em>Analytics ⏭️:</em> per-district viewership and query stats.</li>
+<li><em>2D (adapted):</em> custom-rendered choropleth map with polygon tessellation, plus custom-rendered comparison charts. <em>3D:</em> not needed. <em>Networking:</em> 🔵 live push to web viewers (WebSockets; Firebase bridge in T1).</li>
+<li><span style="color:#8E44AD"><em>RBAC &amp; audit logging:</em></span> operators vs. admins vs. public viewers; every ingested batch, correction and result amendment lands in an immutable audit trail — election-integrity by construction.</li>
+</ul>
+<h3 id="suggested-tech-goals">Suggested Tech Goals</h3>
+<p>G1–G3 ⭐ are the common goals (fixed for all categories); the other 3 are picked from the GovTech pool in <code>milestone-goals-pool-per-category.md</code> (G1–G3 ⭐ common, G4+ picks).</p>
+<p><em>M1:</em></p>
+<ul>
+<li><strong>G1 ⭐ Application Shell, Real-time C++ Simulation Loop, Input &amp; Core Logic</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> SDL2 window (PC) and Emscripten/WASM shell (web) over one C++ core; fixed-timestep loop driving feed ingest, tally updates and map animation; C++17/20, CMake, Git.</li><li><b>Prerequisites:</b> None — foundation of this project.</li><li><b>Feeds into:</b> Every other goal; M1 G4 ingest and M1 G14 simulator tick inside this loop.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Data-Driven Architecture of Core Objects / Entity System</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Districts (boundary polygons), parties, candidates and feed scenarios as JSON (nlohmann/json) with hot-reload; GeoJSON import for real Singapore boundaries.</li><li><b>Prerequisites:</b> G1 (loop &amp; hooks).</li><li><b>Feeds into:</b> M1 G5 (map geometry), M1 G14 (scenario definitions), M2 G2 (editor edits this data).</li></ul></details>
+</li>
+<li><strong>G3 ⭐ Debugging, Profiling, Stress Test &amp; CI</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> ImGui overlays (batches/s, tally latency, render ms), Tracy profiling, Catch2 stress tests replaying full election nights at high speed, GitHub Actions Windows+Linux matrix plus a WASM build job.</li><li><b>Prerequisites:</b> G1 (loop to instrument).</li><li><b>Feeds into:</b> M2 G3; deterministic replays underpin M2 G10 projection tests.</li></ul></details>
+</li>
+<li><strong>G4 Real-time Feed / Queue Engine</strong> — ordered ingest of per-district vote batches; the pipeline everything downstream consumes.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Ordered batch queue with timestamps, idempotent ingest (corrections re-apply cleanly), running per-district and national tallies in C++.</li><li><b>Prerequisites:</b> G1 (loop), G2 (district/party model).</li><li><b>Feeds into:</b> M2 G10 (projections read the tallies), M2 G7 (every batch is audited), the live map coloring.</li></ul></details>
+</li>
+<li><strong>G5 2D Map / Dashboard Rendering</strong> — the custom-rendered Singapore choropleth and live charts; the face of the product.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Polygon tessellation of district boundaries to OpenGL triangles, choropleth coloring with animated transitions, pan/zoom camera, FreeType labels, custom bar/line charts.</li><li><b>Prerequisites:</b> G1 (render loop), G2 (boundary data).</li><li><b>Feeds into:</b> M2 G11 (report visuals), M2 G2 (editor live preview); every visible pixel of the demo.</li></ul></details>
+</li>
+<li><strong>G14 Domain Simulation Core</strong> — the election-day feed simulator (adjustment 1): seeded scenarios that make the system testable and demoable.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Seeded scenario playback — turnout curves, batch arrival schedules, per-district party distributions, correction events — generating the vote stream M1 G4 ingests.</li><li><b>Prerequisites:</b> G1 (clock), G2 (scenario data).</li><li><b>Feeds into:</b> All development and demos; M2 G10 validates projections against simulated ground truth.</li></ul></details>
+</li>
+</ul>
+<p><em>M2:</em></p>
+<ul>
+<li><strong>G1 ⭐ Architecture — Optimization &amp; Platform Validation</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Tracy on ingest/tessellation paths, ASan on MSVC, batching for map redraws; validation of the WASM build on mobile browsers at full feed rate.</li><li><b>Prerequisites:</b> All M1 goals.</li><li><b>Feeds into:</b> Smooth election-night demo on phones; headroom for M2 G10.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Content Editor — Core</strong> — the election setup editor: districts, parties, candidates, feed scenarios.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Editor for district metadata, party/candidate lists and feed-scenario parameters with JSON round-trip and an undo/redo command stack.</li><li><b>Libraries/Software:</b> Dear ImGui, nlohmann/json, project&#39;s OpenGL map renderer (live preview)</li><li><b>Prerequisites:</b> M1 G2 (data model), M1 G5 (map view), M1 G14 (scenario schema).</li><li><b>Feeds into:</b> Every configured election; scenario variety for the showcase.</li></ul></details>
+</li>
+<li><strong>G3 ⭐ CI — CMake, Code Quality, Build Standards &amp; Packaging</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> CMake presets, clang-format + clang-tidy gates, GitHub Actions matrix producing the Windows build and the deployable WASM bundle, replay-based regression tests.</li><li><b>Prerequisites:</b> M1 G3 (incl. WASM job).</li><li><b>Feeds into:</b> The shareable web demo URL; guards tally determinism.</li></ul></details>
+</li>
+<li><strong>G7 RBAC &amp; Audit Logging</strong> — the category&#39;s purple requirement: roles plus an immutable trail of every batch and correction.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Role model (admin / operator / public viewer) enforced across editor and ingest, append-only audit log of batches, corrections and amendments with actor + timestamp, audit viewer UI.</li><li><b>Prerequisites:</b> M1 G4 (ingest events), Firebase Auth basics.</li><li><b>Feeds into:</b> The election-integrity story of the demo — show a correction, then show its audit trail.</li></ul></details>
+</li>
+<li><strong>G10 Prediction Engine</strong> — winner projections and swing analysis computed in C++; the &quot;broadcast studio&quot; feature.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Running projections per district (share of count reported, historical baselines, confidence bands), swing vs. previous election, &quot;projected winner&quot; calls with thresholds.</li><li><b>Prerequisites:</b> M1 G4 (tallies), M1 G14 (ground truth to validate against), M2 G1 (headroom).</li><li><b>Feeds into:</b> M2 G11 reports; the most impressive live moment of the showcase.</li></ul></details>
+</li>
+<li><strong>G11 Reports &amp; Transparency Dashboards</strong> — final results, party comparisons and exportable summaries.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Post-election dashboards — party comparison, turnout, seat totals, per-district breakdowns — custom-rendered and exportable (PNG/CSV) for transparency.</li><li><b>Prerequisites:</b> M1 G4 + M2 G10 (data and projections), M1 G5 (chart rendering).</li><li><b>Feeds into:</b> The final deliverable a viewer or journalist would actually use.</li></ul></details>
+</li>
+</ul>
+<h3 id="track-goals--team-composition">Track Goals &amp; Team Composition</h3>
+<p><strong>Recommended composition:</strong> 6 CS + 2 Design + 0 Art — a data-viz/iconography surface (map styling, party palettes) fits GovTech&#39;s 0-artist norm; with 0 artists the Design conditionals are mandatory picks, so the second designer slot is strongly advised (and used below).</p>
+<div style="background:#F5F0FA;border-left:4px solid #7E57C2;padding:6px 12px;margin:10px 0 4px;border-radius:4px"><b>Track goals</b> — suggested Design/Art picks and TEAM notes for this project; deliverables &amp; quality ladders live in the Design, Art and TEAM pool documents.<ul style="margin:4px 0 0"><li><b>Design M1:</b><ul><li>D1 ⭐ Service DD — viewer + ops blueprint (who watches, who operates the feed), trust &amp; neutrality mandate</li><li>D2 Prototype — map → constituency drill-down → live update loop, both roles clickable</li><li>D5 Status &amp; alert conventions spec — live-update ergonomics (counting/called/confirmed states, change flashes)</li><li>D11 Art POC (conditional — no artist) — civic map styling, colorblind-safe party palette, iconography</li><li>TU1 ⭐ UI Standards &amp; Wireframe Baseline — the D5 conventions and wireframes are assessed in this review (one flow map serves both)</li></ul></li><li><b>Design M2:</b><ul><li>D1 ⭐ UX validation + final polished UI</li><li>D6 Service polished — feed → tally → map update → viewer, end to end on an election-night scenario</li><li>D8 Status &amp; notification pass — result-confirmed moments with clarity and neutrality</li><li>D11 Art Implementation Quality (conditional)</li><li>TU1 ⭐ Functional UI &amp; Usability — GovTech screens: viewer map home · constituency drill-down · party comparison · ops/feed dashboard · settings · help; both roles navigable unaided</li></ul></li><li><b>Art:</b> 0 artists — the Design conditionals (M1 D11 Art POC / M2 D11 Art Implementation Quality) cover the art surface.</li><li><b>TEAM M1:</b><ul><li>TA1 ⭐ Audio Direction &amp; Plan — restrained civic cue set (result update, constituency called, alert)</li></ul></li><li><b>TEAM M2:</b><ul><li>TA1 ⭐ Audio Integration &amp; Quality — GovTech floor: no BGM; ≥5 cues (result update, constituency called, alert, error, success), every cue paired with a visual equivalent</li><li>TP1 ⭐ Final Presentation — 7 min in front of class + instructors: live custom-tools showcase, prototype demo, team post-mortem (wk14)</li></ul></li></ul></div>
+
+<hr />
+<p><em>Generated by the Project Proposal Assessor skill · grounding: live folder · references verified 2026-07-05 · track goals &amp; unified workbooks retrofitted 2026-07-12.</em></p>
+</body>
+</html>

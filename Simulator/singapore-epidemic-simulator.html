@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Singapore Epidemic Simulator</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style type="text/css">body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+max-width: 900px; margin: 0 auto; padding: 24px 32px; color: #1f2328; line-height: 1.55; }
+h1, h2 { border-bottom: 1px solid #d1d9e0; padding-bottom: 6px; }
+h2 { margin-top: 28px; } h3 { margin-top: 24px; color: #1f2328; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; display: block; overflow-x: auto; }
+th, td { border: 1px solid #d1d9e0; padding: 6px 12px; text-align: left; }
+th { background: #f6f8fa; font-weight: 600; }
+tr:nth-child(even) td { background: #f6f8fa; }
+code { background: #f0f1f3; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+a { color: #0969da; text-decoration: none; } a:hover { text-decoration: underline; }
+img { max-width: 100%; border: 1px solid #d1d9e0; border-radius: 6px; }
+li { margin: 3px 0; }
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Singapore Epidemic Simulator</h1>
+</header>
+<p><a href="../index.html">← Back to index</a></p>
+<h2 id="singapore-epidemic-simulator-student-proposal">Singapore Epidemic Simulator <em>(student proposal)</em></h2>
+<div style="background:#F6F8FA;border-left:4px solid #57606A;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Assessment:</b> 🔶 Fit with adjustments · <b>Category:</b> Simulator · <b>Assessed:</b> 2026-07-13 · <b>Status:</b> awaiting instructor approval</div>
+
+<p><strong>Proposal (as submitted):</strong> A simulation of an epidemic in Singapore. The starting location can be any hospital or laboratory. A server runs the simulation in real time, where the spread is only caught after 5 days; citizens have a mobile-facing app that alerts them which zones to avoid and where it is safe to gather.</p>
+<p><em>Category note:</em> the deliverable IS a spatial disease simulation, so this is <strong>Simulator</strong> — the direct sibling of the category&#39;s Epidemic-spread example, extended with a Singapore geography and a citizen-facing alert client. The citizen-service angle makes <strong>GovTech</strong> the runner-up, but the scientific simulation engine (not the service workflow) is the heart of the project, so Simulator is the right home.</p>
+<p><strong>Adjustments required for approval:</strong></p>
+<ul>
+<li>The spread must be a <strong>load-bearing spatial C++ simulation</strong> — Singapore modelled as zones (e.g. planning areas) with a per-tick metapopulation-SIR or agent-based transmission model and inter-zone mobility. It must NOT be a closed-form epidemic curve, a scripted animation, or a Firebase query; the real-time loop over the zone graph is the deliverable.</li>
+<li><strong>Simulated data only, unmistakably labelled.</strong> The citizen app must be clearly a simulation / what-if exercise at all times — never presented as real outbreak data or official Singapore public-health guidance (a fictional outbreak alert mistaken for real would cause genuine harm). Reframe &quot;where to gather&quot; as <em>lower-risk zone guidance within the simulation</em>; drop any real-world instruction that marshals people to gather (sound outbreak guidance never directs crowds together).</li>
+<li><strong>T1 scope = local backend; the always-on real-time server is the Server-indicated T2 evolution.</strong> In trimester 1 the C++ engine runs locally, the citizen mobile app is a client, and Firebase distributes per-zone risk state and run results. Do not over-invest in distributed server infrastructure in T1 — the module&#39;s server platform is a second-trimester goal (Appendix A).</li>
+<li><strong>Keep the Simulator&#39;s scientific spine.</strong> The &quot;caught only after 5 days&quot; detection lag must be a modelled, data-driven mechanic (a <em>hidden-infected</em> state vs. an <em>officially-detected</em> state, with the alerts firing off the lagging detected state). The project must retain a what-if dimension — comparing seed origins (which hospital/lab) and interventions across seeded runs — rather than collapsing into a live alert feed.</li>
+</ul>
+<p><em>References:</em></p>
+<ul>
+<li><a href="https://www.gleamviz.org/">GLEAMviz — the Global Epidemic and Mobility Model (client-server, geo-mapped)</a></li>
+<li><a href="https://ccl.northwestern.edu/netlogo/models/epiDEMTravelandControl">NetLogo epiDEM Travel and Control</a></li>
+<li><a href="https://www.healthmap.org/en/">HealthMap — global disease-alert map (citizen-facing, zone/dot alerts)</a></li>
+</ul>
+<h3 id="core-tech-requirements">Core Tech Requirements</h3>
+<p>Legend: ✅ Applies directly | 🔶 Applies with domain adaptation | 🔵 Optional | ❌ Not needed | ⏭️ Second trimester</p>
+<table>
+<thead>
+<tr class="header">
+<th>Core Tech Requirement</th>
+<th>Singapore Epidemic Simulator</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>External Database (Firebase)</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Authentication ⏭️</td>
+<td>🔵</td>
+</tr>
+<tr class="odd">
+<td>Analytics ⏭️</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>C++ Performant Service</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Real-time C++ Simulation Loop</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Application Communication</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Continuous Integration</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Data-Driven Architecture</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Front-end + Local Backend</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Custom Tools Development</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>2D Graphical Output</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>3D (strong students only)</td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>Networking System</td>
+<td>🔵</td>
+</tr>
+<tr class="even">
+<td><span style="color:#8E44AD"><strong>Headless Batch Mode</strong> — run N simulations without rendering + statistical reports (new)</span></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How each requirement applies:</strong></p>
+<div style="background:#EAF3FF;border-left:4px solid #0969DA;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><i>Platform fit:</i> <b>Native mobile + web browser on mobile (citizen app) + Native PC (ops/authoring)</b> — the citizen alert app is the mobile deliverable (reference device Pixel 8a/9a and/or mobile web); the operator/simulation view and scenario authoring run on the PC side.</div>
+
+<div style="background:#E8F5E9;border-left:4px solid #2E7D32;padding:6px 12px;margin:4px 0 4px;border-radius:4px"><b>Front end:</b> Citizen app — Singapore zone map coloured by risk, &quot;my-zone&quot; status, alerts, lower-risk-zone guidance. Operator view — zone map with live SIR overlay, run controls (ImGui), SIR curves. <b>Languages:</b> C++, GLSL; HTML/JS/CSS (citizen app via WASM or mobile web).</div>
+
+<div style="background:#FFF3E0;border-left:4px solid #E65100;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Back end:</b> Metapopulation/agent SIR engine with inter-zone mobility and a hidden-vs-detected (5-day lag) model, threshold→alert engine, headless campaign runner, Firebase for per-zone risk distribution and run results. <b>Languages:</b> C++.<br><b>Backend scope:</b> Server-indicated (T2) — a real-time server pushing zone alerts to many citizen phones is inherently a shared-server design; T1 uses the local engine + Firebase as the stopgap.</div>
+
+<ul>
+<li><em>Simulation loop:</em> per-tick transmission across the zone graph, SIR state transitions, inter-zone mobility, and the hidden→detected lag — the load-bearing core.</li>
+<li><em>Data-driven:</em> disease parameters, zone/mobility graph, seed origin (hospital/lab), and intervention policies all as data. <em>Custom tool:</em> outbreak/scenario editor.</li>
+<li><em>2D:</em> Singapore zone map coloured by risk plus live SIR curves. <em>Alerts:</em> per-zone threshold rules fire the citizen advisories (off the lagging detected state).</li>
+<li><em>External DB / Analytics ⏭️:</em> per-zone risk state pushed to citizen clients; run results and scenario library in Firebase. <em>Auth ⏭️:</em> optional accounts. <em>Networking 🔵:</em> the real-time push is Firebase in T1, a dedicated server in T2.</li>
+<li><span style="color:#8E44AD"><em>Headless batch mode:</em></span> sweep seed origins and interventions across hundreds of seeded runs — &quot;which origin/policy contains it fastest&quot; is the scientific showcase result.</li>
+</ul>
+<h3 id="suggested-goals">Suggested Goals</h3>
+<p>The goals below are the <strong>CS track</strong>: G1–G3 ⭐ are the common goals (fixed for all categories); the other 3 are picked from the Simulator pool in the CS Goals Pool (<code>../../Project 2 Technical adjustments/milestone-goals-pool-per-category.pdf</code>; G1–G3 ⭐ common, G4+ picks). The violet <strong>Track goals</strong> box below suggests the Design/Art/TEAM picks.</p>
+<p><em>M1:</em></p>
+<ul>
+<li><strong>G1 ⭐ Application Shell, Real-time C++ Simulation Loop, Input &amp; Core Logic</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> SDL2 window/input, fixed-timestep loop applying per-tick inter-zone transmission, SIR transitions and the hidden→detected lag over the Singapore zone graph; CMake, Git.</li><li><b>Prerequisites:</b> None — foundation of this project.</li><li><b>Feeds into:</b> M1 G4 (renders its world), M1 G14 (watches its detected counts); every other goal.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Data-Driven Architecture of Core Objects / Entity System</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Disease model (transmission probability, recovery time, incubation), the hidden-infected vs. officially-detected states (the 5-day lag), zone attributes and seed origin defined in JSON (nlohmann/json) with hot-reload.</li><li><b>Prerequisites:</b> G1 (shell &amp; loop).</li><li><b>Feeds into:</b> M1 G15 (zone/mobility graph as data), M1 G14 (alert thresholds), M2 G2 (editor edits this model).</li></ul></details>
+</li>
+<li><strong>G3 ⭐ Debugging, Profiling, Stress Test &amp; CI</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> ImGui overlays of per-zone SIR counts and hidden-vs-detected gap, Tracy profiling at full-island population, Catch2 tests of transition and lag logic, GitHub Actions Windows + Linux builds.</li><li><b>Prerequisites:</b> G1 (shell &amp; loop).</li><li><b>Feeds into:</b> M2 G3 (CI advanced); M2 G16 (stress hooks reused by the campaign runner).</li></ul></details>
+</li>
+<li><strong>G4 2D Visualization of the Simulated World</strong> — the Singapore zone map coloured by infection/risk plus live SIR curves.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> SDL2/OpenGL rendering of the Singapore zone map shaded by per-zone SIR/risk state, with live SIR curves and FreeType labels.</li><li><b>Prerequisites:</b> G1 (loop, per-zone state) and G15 (zone geometry to draw).</li><li><b>Feeds into:</b> M1 G14 (alerts overlay it); M2 G4 (advanced heatmap) and M2 G14 (the citizen app reuses this renderer).</li></ul></details>
+</li>
+<li><strong>G14 Alert &amp; Feedback System</strong> — per-zone risk thresholds fire advisories off the lagging <em>detected</em> state.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Threshold rules (per-zone detected-case / capacity breach) firing visual alarms via SDL2/ImGui and audio cues via OpenAL, driven by the detected (not the true) state so the 5-day lag is felt.</li><li><b>Prerequisites:</b> G1 (live detected counts); overlays on M1 G4.</li><li><b>Feeds into:</b> M2 G14 (the citizen app surfaces these alerts on the phone); alert events logged for M2 G15 reports.</li></ul></details>
+</li>
+<li><strong>G15 Map / Environment System</strong> — Singapore as a zone + mobility graph.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Singapore planning areas as a JSON zone graph (adjacency + commuting weights), pan/zoom map camera, spatial lookup; seed origin (hospital/lab) placed on the graph.</li><li><b>Prerequisites:</b> G2 (data model).</li><li><b>Feeds into:</b> M1 G1 (transmission spreads across it), M1 G4 (drawn as the map), M2 G2 (editor authors zones/seeds).</li></ul></details>
+</li>
+</ul>
+<p><em>M2:</em></p>
+<ul>
+<li><strong>G1 ⭐ Architecture — Optimization &amp; Platform Validation</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Tracy profiling of full-island populations, memory pools, std::thread; Emscripten/WASM build of the citizen app validated on the mobile target (Pixel 8a/9a and/or mobile web).</li><li><b>Prerequisites:</b> All M1 goals (hardens the M1 codebase).</li><li><b>Feeds into:</b> M2 G14 (mobile citizen app) and M2 G16 (fast headless campaigns).</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Content Editor — Core</strong> — the outbreak/scenario editor.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> ImGui editor to author zones and mobility weights, place the seed origin (hospital/lab), and set disease/detection-lag/intervention parameters, with JSON round-trip and undo/redo.</li><li><b>Libraries/Software:</b> Dear ImGui, nlohmann/json, project&#39;s SDL2/OpenGL zone-map renderer (live preview)</li><li><b>Prerequisites:</b> M1 G2 (data model) and M1 G15 (zone/mobility format it edits).</li><li><b>Feeds into:</b> Scenarios queued by M2 G16 and shared through Firebase.</li></ul></details>
+</li>
+<li><strong>G3 ⭐ CI — CMake, Code Quality, Build Standards &amp; Packaging</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> CMake presets, clang-format + clang-tidy, packaging of the native ops app and the Emscripten citizen-app build via GitHub Actions matrix.</li><li><b>Prerequisites:</b> M1 G3 (CI foundation).</li><li><b>Feeds into:</b> Release/showcase builds of every goal.</li></ul></details>
+</li>
+<li><strong>G4 Visualization — Advanced</strong> — animated zone-risk heatmap with the detected-vs-actual lag made visible.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> GLSL risk heatmap over the Singapore map, time scrubbing of an outbreak, and a detected-vs-actual overlay that dramatises the 5-day blind window.</li><li><b>Prerequisites:</b> M1 G4 (base map/curves) and M1 G15; M2 G1 (frame budget).</li><li><b>Feeds into:</b> The showcase; the visual layer the citizen app (M2 G14) draws from.</li></ul></details>
+</li>
+<li><strong>G14 Mobile / Web Viewer Port</strong> — the citizen alert app on the phone.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Emscripten/WASM (or mobile-web) citizen client — zone-risk map, &quot;my-zone&quot; status, alerts and lower-risk-zone guidance — subscribing to per-zone risk state from Firebase; touch input, mobile frame budget; a persistent &quot;SIMULATION — not real health advice&quot; label.</li><li><b>Prerequisites:</b> M2 G1 (optimised, mobile-validated build) and M1 G14 (the alert logic it surfaces).</li><li><b>Feeds into:</b> The mobile showcase deliverable — the citizen half of the product.</li></ul></details>
+</li>
+<li><strong>G16 Multi-Scenario Campaign Runner</strong> — sweep seed origins and interventions across seeded runs.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> CLI-driven std::thread run farm queueing hundreds of seeded, headless runs across seed origins (which hospital/lab) and interventions (distancing, zone lockdown, travel limits), CSV/JSON output.</li><li><b>Prerequisites:</b> M1 G1 (render-decoupled core), M1 G3 (stress hooks), M1 G15 (zone graph) and M2 G2 (scenarios).</li><li><b>Feeds into:</b> The scientific showcase result — which origin/policy contains the outbreak fastest; data behind M2 G4 overlays.</li></ul></details>
+</li>
+</ul>
+<div style="background:#F5F0FA;border-left:4px solid #7E57C2;padding:6px 12px;margin:10px 0 4px;border-radius:4px"><b>Track goals</b> — suggested Design/Art picks and TEAM notes for this project; deliverables &amp; quality ladders live in the Design, Art and TEAM pool documents.<ul style="margin:4px 0 0"><li><b>Recommended composition:</b> 6 CS + 2 Design + 0 Art — two front-ends (operator simulation view + citizen alert app) plus a Singapore zone map give a substantial UX/service-design surface, so 2 designers are justified (one on the simulation/ops UX, one on the citizen app + map legibility). Art surface is low (map styling, zone iconography), so 0 artists with the Design conditionals covering it; 1 Art is optional if the team wants a polished animated map.</li><li><b>Design M1:</b><ul><li>D1 ⭐ Simulation Product DD — the outbreak model and its two audiences (operators reading the spread, citizens reading their zone)</li><li>D2 Prototype — configure outbreak → run → citizen sees a zone alert, clickable end to end</li><li>D4 UX Flows &amp; Wireframes — the citizen app screens and the operator screens</li><li>D7 Parameter Model design — infection, mobility and the 5-day detection-lag parameters</li></ul></li><li><b>Design M2:</b><ul><li>D1 ⭐ UX validation + final polished UI</li><li>D6 Polished experiment — one outbreak scenario end to end incl. citizen alerts</li><li>D8 Legibility pass — zone-risk map readability (colour-blind-safe risk scale)</li><li>D10 Mobile UX Adaptation &amp; Ergonomics — the citizen app on the phone</li></ul></li><li><b>Art:</b> 0 artists — the Design conditionals (M1 D11 Art POC / M2 D11 Art Implementation Quality) cover the map styling and zone iconography; 1 Art optional for a polished animated Singapore map.</li><li><b>TEAM M1:</b><ul><li>TA1 ⭐ Audio Direction &amp; Plan — alert/notification cue set (outbreak detected, zone risk raised, all-clear); references and sourcing/integration plan.</li><li>TU1 ⭐ UI Standards &amp; Wireframe Baseline — standards for BOTH the ops sim view and the citizen app; where Design D4 is picked, the TU1 review assesses those wireframes.</li></ul></li><li><b>TEAM M2:</b><ul><li>TA1 ⭐ Audio Integration &amp; Quality — Simulator floor: BGM optional; ≥5 event cues (outbreak start, threshold breach, alert issued, zone cleared, run complete), each with a visual pair for the citizen app (accessibility).</li><li>TU1 ⭐ Functional UI &amp; Usability — screens: (ops) scenario select · run view with pause/speed · report; (citizen) zone map · my-zone risk · alerts · lower-risk-zone guidance; both navigable unaided.</li></ul></li></ul></div>
+
+<hr />
+<p><em>Generated by the Project Proposal Assessor skill · grounding: live folder · references verified 2026-07-13.</em></p>
+</body>
+</html>

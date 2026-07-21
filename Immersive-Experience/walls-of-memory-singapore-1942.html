@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Walls of Memory: Singapore 1942</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style type="text/css">body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;max-width: 900px; margin: 0 auto; padding: 24px 32px; color: #1f2328; line-height: 1.55; }h1, h2 { border-bottom: 1px solid #d1d9e0; padding-bottom: 6px; }h2 { margin-top: 28px; } h3 { margin-top: 24px; color: #1f2328; }table { border-collapse: collapse; width: 100%; margin: 14px 0; display: block; overflow-x: auto; }th, td { border: 1px solid #d1d9e0; padding: 6px 12px; text-align: left; }th { background: #f6f8fa; font-weight: 600; }tr:nth-child(even) td { background: #f6f8fa; }code { background: #f0f1f3; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }a { color: #0969da; text-decoration: none; } a:hover { text-decoration: underline; }img { max-width: 100%; border: 1px solid #d1d9e0; border-radius: 6px; }li { margin: 3px 0; }</style>
+</head>
+<body>
+<div style="text-align:right;margin:0 0 14px"><a href="walls-of-memory-singapore-1942.docx" download style="display:inline-block;background:#2E7D32;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as Word (.docx)</a><a href="walls-of-memory-singapore-1942.pdf" download style="display:inline-block;background:#C62828;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as PDF (.pdf)</a></div>
+<header id="title-block-header">
+<h1 class="title">Walls of Memory: Singapore 1942</h1>
+</header>
+<p><a href="../index.html">← Back to index</a></p>
+<h2 id="walls-of-memory-singapore-1942-student-proposal">Walls of Memory: Singapore 1942 <em>(student proposal)</em></h2>
+<div style="background:#F6F8FA;border-left:4px solid #57606A;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Assessment:</b> 🔶 Fit with adjustments · <b>Category:</b> Immersive Experience · <b>Assessed:</b> 2026-07-14 · <b>Status:</b> awaiting instructor approval</div>
+
+<p><strong>Proposal (as submitted):</strong> A projected experience on the wall, with an app that controls the projected images and allows manipulating the visual effects, to show the impact of the Japanese invasion of Singapore.</p>
+<p><em>Category note:</em> an atmosphere-first projected installation with a companion controller — squarely <strong>Immersive Experience</strong> (nearest instructor example: the Interactive museum exhibit). Runner-up: Education + Training — but the product&#39;s core promise is an experience to be felt, not lessons or drills.</p>
+<p><strong>Adjustments required for approval:</strong></p>
+<ul>
+<li>The projection renderer must be the team&#39;s <strong>own real-time C++ engine</strong> (SDL2/OpenGL scene compositing, layers, particles, shaders at 60 fps) — not a video/slideshow player. &quot;Manipulating the visual effects&quot; must mean <strong>live parameter control of engine effects</strong> (emitter rates, intensity, transitions), never switching pre-rendered clips.</li>
+<li>The <strong>phone ↔︎ renderer control link is core tech</strong>: a custom local-network protocol (UDP/ENet on the installation LAN) with a measured control-to-photon latency budget (<strong>under 100 ms</strong>). Firebase stays BaaS for content and stats — it must never carry the live control path.</li>
+<li><strong>Mobile-output policy (Appendix F):</strong> the controller app on the reference phone (Pixel 8a/9a) ships as a <strong>first-class output</strong> — the control deck plus a live on-device companion rendering of the chapters; the projection PC ships only as the installation &quot;(ops)&quot; side of the role split.</li>
+<li><strong>Historical care:</strong> all exhibit content is data-driven and authored through the curator editor from documented sources; archival imagery/audio licensing verified; respectful memorial tone with a sensitive-content notice at entry (consider M2 G16 Accessibility &amp; Comfort as an additional pick).</li>
+</ul>
+<p><em>References:</em></p>
+<ul>
+<li><a href="https://www.teamlab.art/w/story-of-the-forest/">teamLab — Story of the Forest, National Museum of Singapore (official)</a></li>
+<li><a href="https://www.nhb.gov.sg/changichapelmuseum/">Changi Chapel and Museum — the Japanese Occupation story (official)</a></li>
+<li><a href="https://www.heavym.net/">HeavyM — projection mapping software with live effect control (official)</a></li>
+</ul>
+<h3 id="core-tech-requirements">Core Tech Requirements</h3>
+<p>Legend: ✅ Applies directly | 🔶 Applies with domain adaptation | 🔵 Optional | ❌ Not needed | ⏭️ Second trimester</p>
+<table>
+<thead>
+<tr class="header">
+<th>Core Tech Requirement</th>
+<th>Walls of Memory: Singapore 1942</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>External Database (Firebase)</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Authentication ⏭️</td>
+<td>🔵</td>
+</tr>
+<tr class="odd">
+<td>Analytics ⏭️</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>C++ Performant Service</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Real-time C++ Simulation Loop</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Application Communication</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Continuous Integration</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Data-Driven Architecture</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Front-end + Local Backend</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Custom Tools Development</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>2D Graphical Output</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>3D (strong students only)</td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>Networking System</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td><span style="color:#8E44AD"><strong>Spatial / Reactive Audio Engine</strong> — positional sound, input- and state-driven mixing (new)</span></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How each requirement applies:</strong></p>
+<div style="background:#EAF3FF;border-left:4px solid #0969DA;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><i>Platform fit:</i> <b>Native mobile (reference device: Google Pixel 8a / 9a) + Native PC (ops)</b> — the phone is the docent/visitor control deck AND renders a live companion view of the chapters; the PC (ops) side drives the projector wall in the installation.</div>
+
+<div style="background:#E8F5E9;border-left:4px solid #2E7D32;padding:6px 12px;margin:4px 0 4px;border-radius:4px"><b>Front end:</b> Projected scene rendering (layered archival imagery, particles, shader effects, FreeType captions), phone control deck + companion view. <b>Languages:</b> C++, GLSL.</div>
+
+<div style="background:#FFF3E0;border-left:4px solid #E65100;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Back end:</b> Scene &amp; sequence engine (invasion chapters), effect parameter system, control-protocol server, spatial audio, Firebase content/stats. <b>Languages:</b> C++.<br><b>Backend scope:</b> Local only — the renderer + controller pair lives on the installation LAN; Firebase remains BaaS.</div>
+
+<ul>
+<li><em>Simulation loop:</em> per-frame scene compositing, particle simulation and transition playback, all steered live by control events — the projection is computed, not played back.</li>
+<li><em>Data-driven:</em> chapters, scenes, layers, emitter presets, captions and hotspots defined as JSON — the entire exhibit is content the curator editor can author.</li>
+<li><em>Custom tool:</em> curator chapter/scene editor — historians assemble sequences, place archival imagery and tune effect presets without code.</li>
+<li><em>External DB:</em> exhibit content and versions. <em>Auth ⏭️:</em> operator/docent login on the control deck. <em>Analytics ⏭️:</em> per-chapter interaction and dwell statistics.</li>
+<li><em>2D:</em> layered parallax scenes over archival photographs with custom shaders (fire glow, smoke, searchlights). <em>3D:</em> not needed. <em>Networking:</em> ✅ — the app↔︎renderer control protocol is core to the concept.</li>
+<li><span style="color:#8E44AD"><em>Spatial/reactive audio:</em></span> sirens crossing the room, bombardment rumble and radio broadcasts positioned per scene, with the mix reacting to chapter state and live control input.</li>
+</ul>
+<h3 id="suggested-tech-goals">Suggested Tech Goals</h3>
+<p>G1–G3 ⭐ are the common goals (fixed for all categories); the other 3 are picked from the Immersive Experience pool in the CS Goals Pool (<code>milestone-goals-pool-per-category.md</code>).</p>
+<p><em>M1:</em></p>
+<ul>
+<li><strong>G1 ⭐ Application Shell, Real-time C++ Simulation Loop, Input &amp; Core Logic</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> SDL2 fullscreen projection shell with fixed-timestep loop; input events dispatched from touch (dev), keyboard (dev) and the LAN control channel into one event queue; C++17/20, CMake, Git.</li><li><b>Prerequisites:</b> None — foundation of this project.</li><li><b>Feeds into:</b> Every goal; M1 G10&#39;s sequences and M1 G5&#39;s emitters tick inside this loop; the control link (adjustment 2) lands in its input layer until a dedicated pool goal exists.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Data-Driven Architecture of Core Objects / Entity System</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Entity/component model for chapters, scenes, layers, emitter presets and hotspots in JSON (nlohmann/json) with hot-reload so curators see edits instantly.</li><li><b>Prerequisites:</b> G1 (loop &amp; update hooks).</li><li><b>Feeds into:</b> M1 G4/G5/G10 consume this model; M2 G2 (curator editor) edits it directly.</li></ul></details>
+</li>
+<li><strong>G3 ⭐ Debugging, Profiling, Stress Test &amp; CI</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> ImGui overlays (frame time, particle counts, control-link latency), Tracy profiling, Catch2 tests, long soak runs for all-day unattended installation running, GitHub Actions Windows+Linux CI.</li><li><b>Prerequisites:</b> G1 (loop to instrument).</li><li><b>Feeds into:</b> M2 G3 (packaging CI); the latency budget in adjustment 2 is measured here.</li></ul></details>
+</li>
+<li><strong>G4 2D Scene Rendering &amp; Animation System</strong> — layered archival-imagery scenes with tweened camera and light moves: the wall itself.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> OpenGL renderer with GLSL, parallax layers over archival photographs, tween animation, FreeType captions sized for projection distance, stb_image.</li><li><b>Prerequisites:</b> G1 (loop), G2 (scene data).</li><li><b>Feeds into:</b> M1 G5 (particles composite through it), M1 G10 (sequences animate it), M2 G8 (advanced effects extend it).</li></ul></details>
+</li>
+<li><strong>G5 Particle &amp; VFX System</strong> — the manipulable effects palette: fire, smoke, falling leaflets, searchlights, rain.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> OpenGL-instanced particles with emitter presets as JSON data; every parameter (rate, intensity, direction, color) adjustable at runtime — the surface the app manipulates.</li><li><b>Prerequisites:</b> M1 G4 (renderer).</li><li><b>Feeds into:</b> M2 G8 (showcase effects), the live-control demo at the wk9 checkpoint.</li></ul></details>
+</li>
+<li><strong>G10 Narrative / Sequence Engine</strong> — the invasion timeline as data: air raids → the fall → occupation, chapter by chapter.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Data-defined chapter sequences (scene order, timings, transitions, audio cues) with play/pause/scrub/jump; deterministic playback for reliable exhibition runs.</li><li><b>Prerequisites:</b> G1 (tick), G2 (chapter data).</li><li><b>Feeds into:</b> M2 G2 (the editor authors sequences), M2 G7 (audio cues ride the sequence), the memorial arc Design owns.</li></ul></details>
+</li>
+</ul>
+<p><strong>Proposed new pool goal (requires instructor approval):</strong> <em>Remote Control &amp; Companion Link</em> — a networked control protocol (discovery, session, low-latency parameter/command channel) between a companion app and the experience renderer. Until approved, the minimum control channel is delivered inside G1 ⭐&#39;s input layer.</p>
+<p><em>M2:</em></p>
+<ul>
+<li><strong>G1 ⭐ Architecture — Optimization &amp; Platform Validation</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Tracy-guided optimization of compositing and particles; ASan on MSVC; companion build validated on the reference phone (Pixel 8a/9a), projection build validated at 1080p60 with the full effects palette; control-to-photon latency measured under 100 ms.</li><li><b>Prerequisites:</b> All M1 goals.</li><li><b>Feeds into:</b> The showcase installation + companion build every other M2 goal demos on.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Content Editor — Core</strong> — the curator editor: chapters, scenes, layers and effect presets authored without code.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Desktop authoring tool editing chapters/scenes/layers/presets with JSON round-trip, undo/redo and live preview through the project&#39;s renderer.</li><li><b>Libraries/Software:</b> Dear ImGui, nlohmann/json, project&#39;s SDL2/OpenGL renderer (live preview)</li><li><b>Prerequisites:</b> M1 G2 (data model), M1 G10 (sequence schema).</li><li><b>Feeds into:</b> Every authored chapter; adjustment 4&#39;s &quot;historians author without code&quot; requirement.</li></ul></details>
+</li>
+<li><strong>G3 ⭐ CI — CMake, Code Quality, Build Standards &amp; Packaging</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> CMake presets for renderer, companion app and editor; clang-format + clang-tidy gates; one-command packaging of the ops build, the mobile build and the editor; CI smoke test plays a full chapter headless.</li><li><b>Prerequisites:</b> M1 G3.</li><li><b>Feeds into:</b> Showcase/installation builds; deterministic-playback guard for G10.</li></ul></details>
+</li>
+<li><strong>G7 Spatial / Reactive Audio Engine</strong> — the purple requirement: the soundscape of the fall of Singapore, positioned and reactive.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Positional mixing (FMOD/OpenAL) — sirens traversing the field, bombardment rumble, radio voices per scene; mix reacts to chapter state and live control input.</li><li><b>Prerequisites:</b> M1 G10 (sequence cues), CS audio foundation.</li><li><b>Feeds into:</b> TEAM TA1 ⭐ (M2) grading; the emotional weight of the experience.</li></ul></details>
+</li>
+<li><strong>G8 Particle / VFX II</strong> — the showcase effects: era-accurate impact visuals and chapter transitions, manipulated live from the app.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Advanced compositing (burn/ash/fade transitions, searchlight volumetrics, rain over rooftops), every showcase effect exposing live parameters to the control deck within the latency budget.</li><li><b>Prerequisites:</b> M1 G5 (particle base), M2 G1 ⭐ (frame budget).</li><li><b>Feeds into:</b> The core demo moment — a docent reshaping the wall in real time.</li></ul></details>
+</li>
+<li><strong>G13 Mobile Platform Port</strong> — the companion app as a first-class output: control deck + on-device chapter rendering.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Android (NDK) build of the engine&#39;s companion view rendering all chapters on-device; touch control deck driving every live effect parameter; interruption-safe control sessions.</li><li><b>Prerequisites:</b> M2 G1 ⭐ (validated build), M1 G5/G10 (what it controls).</li><li><b>Feeds into:</b> Adjustment 3 compliance — the mobile target as a real output, not a remote.</li></ul></details>
+</li>
+</ul>
+<p><em>(Strong alternate pick: G16 Accessibility &amp; Comfort Options — sensitive-content notice, flash/intensity limits, captions.)</em></p>
+<h3 id="track-goals--team-composition">Track Goals &amp; Team Composition</h3>
+<p><strong>Recommended composition:</strong> 6 CS + 1 Design + 2 Art (9) — the museum-exhibit precedent applies: historical scene art, animation and VFX rival the Games surface; a solo designer owns the experience arc and the control-deck UX.</p>
+<div style="background:#F5F0FA;border-left:4px solid #7E57C2;padding:6px 12px;margin:10px 0 4px;border-radius:4px"><b>Track goals</b> — suggested Design/Art picks and TEAM notes for this project; deliverables &amp; quality ladders live in the Design, Art and TEAM pool documents.<ul style="margin:4px 0 0"><li><b>Design M1:</b><ul><li>D1 ⭐ Experience DD — the memorial arc across invasion chapters, projection space + visitor flow, content-sensitivity plan, feasibility vs. the CS engine plan</li><li>D2 Prototype — one chapter end to end: phone controls → wall reacts (greybox/Figma acceptable)</li><li>TU1 ⭐ UI Standards &amp; Wireframe Baseline — both surfaces: wall (attract state, caption readability at distance) and control-deck flows</li></ul></li><li><b>Design M2:</b><ul><li>D1 ⭐ UX validation with visitors; final polished control-deck UI + wall entry/attract states on the mobile target</li><li>D9 Narrative Presentation — chapters delivered with motion (parallax, reveals, light) — never static text walls</li><li>TU1 ⭐ Functional UI &amp; Usability — Immersive screens, diegetic-first on the wall (entry/attract · pause/exit · settings incl. volume and sensitive-content notice · instructions) + a first-time docent operates the control deck unaided</li></ul></li><li><b>Art M1:</b><ul><li>2 artists recommended (historical environment + VFX surface) — A1 ⭐ Art bible (archival-imagery treatment, era palette; mockups: wall chapter + control deck)</li><li>A3 Environment, Props &amp; VFX concepts — 1942 streetscapes, landmarks, war machines</li><li>A5 Animation Foundations — scene motion tests (smoke drift, flag, fire cycles)</li><li>A6 Early Asset Production — first chapter&#39;s assets in the prototype by wk8</li></ul></li><li><b>Art M2:</b><ul><li>A1 ⭐ Critical asset set implemented in the showcase build</li><li>A3 Environment alive — living scenes: rain, smoke, flickering light</li><li>A5 VFX — bombardment, fire, searchlights: the manipulable palette</li><li>A6 Cutscenes/Storyboards — chapter transitions storyboarded and rendered</li></ul></li><li><b>TEAM M1:</b><ul><li>TA1 ⭐ Audio Direction &amp; Plan — wartime soundscape direction (sirens, radio, bombardment, silence of aftermath), archival-audio sourcing/licensing, spatial plan against the CS audio system</li></ul></li><li><b>TEAM M2:</b><ul><li>TA1 ⭐ Audio Integration &amp; Quality — Immersive floor: full Games floor (≥1 BGM + ≥6 SFX types) + the Spatial/Reactive Audio purple requirement; reactive moments graded from the gameplay recording</li><li>TP1 ⭐ Final Presentation — 7 min in front of class + instructors: live custom-tools showcase, prototype demo, team post-mortem (wk14)</li></ul></li></ul></div>
+
+<hr />
+<p><em>Generated by the Project Proposal Assessor skill · grounding: live folder · references verified 2026-07-14.</em></p>
+</body>
+</html>
