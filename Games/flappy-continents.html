@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Flappy Continents</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style type="text/css">body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;max-width: 900px; margin: 0 auto; padding: 24px 32px; color: #1f2328; line-height: 1.55; }h1, h2 { border-bottom: 1px solid #d1d9e0; padding-bottom: 6px; }h2 { margin-top: 28px; } h3 { margin-top: 24px; color: #1f2328; }table { border-collapse: collapse; width: 100%; margin: 14px 0; display: block; overflow-x: auto; }th, td { border: 1px solid #d1d9e0; padding: 6px 12px; text-align: left; }th { background: #f6f8fa; font-weight: 600; }tr:nth-child(even) td { background: #f6f8fa; }code { background: #f0f1f3; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }a { color: #0969da; text-decoration: none; } a:hover { text-decoration: underline; }img { max-width: 100%; border: 1px solid #d1d9e0; border-radius: 6px; }li { margin: 3px 0; }</style>
+</head>
+<body>
+<div style="text-align:right;margin:0 0 14px"><a href="flappy-continents.docx" download style="display:inline-block;background:#2E7D32;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as Word (.docx)</a><a href="flappy-continents.pdf" download style="display:inline-block;background:#C62828;color:#ffffff;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:600;margin-left:8px">&#11015; Download as PDF (.pdf)</a></div>
+<header id="title-block-header">
+<h1 class="title">Flappy Continents</h1>
+</header>
+<p><a href="../index.html">← Back to index</a></p>
+<h2 id="flappy-continents-student-proposal">Flappy Continents <em>(student proposal)</em></h2>
+<div style="background:#F6F8FA;border-left:4px solid #57606A;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Assessment:</b> 🔶 Fit with adjustments · <b>Category:</b> Games · <b>Assessed:</b> 2026-07-28 · <b>Status:</b> awaiting instructor approval</div>
+
+<p><strong>Proposal (as submitted):</strong> A Flappy Bird–style one-touch game where the characters and environments are themed to the 7 continents, with flying (moving) platforms in the sky in addition to static grounded platforms.</p>
+<p><strong>Adjustments required for approval:</strong></p>
+<ul>
+<li>The obstacle system must be a genuine <strong>data-driven procedural pattern engine</strong> — flying/moving platforms with authored movement patterns (path, speed, phase), gap and spacing curves — not a handful of hard-coded static pipes. This is what makes the real-time C++ loop load-bearing enough for six CS students.</li>
+<li>The <strong>7 continents must be a data-driven content pipeline</strong> (each continent = biome config + parallax layers + hazard/platform set + character skins, loaded from data with hot-reload), not seven hard-coded scenes.</li>
+<li>Ship a <strong>custom pattern &amp; continent-theme editor</strong> as the project&#39;s tool (M2 G2): author obstacle/platform patterns and continent themes and preview them live, without recompiling.</li>
+<li><strong>Leaderboards must run through Firebase with server-checkable score integrity</strong> — each run reproducible from a seed + input log (the Replay System requirement) so submitted scores are verifiable, not trusted client values.</li>
+</ul>
+<p><em>References:</em></p>
+<ul>
+<li><a href="https://flappybird.org/">Flappy Bird (official)</a></li>
+<li><a href="https://www.halfbrick.com/games/jetpack-joyride-classic">Jetpack Joyride Classic — Halfbrick (official)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Subway_Surfers">Subway Surfers — &quot;World Tour&quot; themed locations (Wikipedia)</a></li>
+</ul>
+<h3 id="core-tech-requirements">Core Tech Requirements</h3>
+<p>Legend: ✅ Applies directly | 🔶 Applies with domain adaptation | 🔵 Optional | ❌ Not needed | ⏭️ Second trimester</p>
+<table>
+<thead>
+<tr class="header">
+<th>Core Tech Requirement</th>
+<th>Flappy Continents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>External Database (Firebase)</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Authentication ⏭️</td>
+<td>⏭️</td>
+</tr>
+<tr class="odd">
+<td>Analytics ⏭️</td>
+<td>⏭️</td>
+</tr>
+<tr class="even">
+<td>C++ Performant Service</td>
+<td>🔵</td>
+</tr>
+<tr class="odd">
+<td>Real-time C++ Simulation Loop</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Application Communication</td>
+<td>🔵</td>
+</tr>
+<tr class="odd">
+<td>Continuous Integration</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Data-Driven Architecture</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Front-end + Local Backend</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Custom Tools Development</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>2D Graphical Output</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>3D (strong students only)</td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>Networking System</td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td><span style="color:#8E44AD"><strong>Replay System</strong> — record &amp; playback of game sessions (new)</span></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How each requirement applies:</strong></p>
+<div style="background:#EAF3FF;border-left:4px solid #0969DA;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><i>Platform fit:</i> <b>Web browser on mobile and/or Native mobile (Pixel 8a/9a)</b> — one-touch tap play is mobile-native; PC is the development/debug vehicle only.</div>
+
+<div style="background:#E8F5E9;border-left:4px solid #2E7D32;padding:6px 12px;margin:4px 0 4px;border-radius:4px"><b>Front end:</b> Parallax continent rendering, character + skin sprites, moving/flying platforms, tap input, score HUD, menus and continent select. <b>Languages:</b> C++, GLSL.</div>
+
+<div style="background:#FFF3E0;border-left:4px solid #E65100;padding:6px 12px;margin:4px 0 8px;border-radius:4px"><b>Back end:</b> Fixed-timestep physics, the procedural pattern/spawn engine, scoring &amp; run statistics, continent/theme &amp; pattern data, Firebase leaderboards and unlock persistence. <b>Languages:</b> C++.<br><b>Backend scope:</b> Local now, server-ready (T2) — the score-validation service can lift onto the Linux server in T2.</div>
+
+<ul>
+<li><em>Simulation loop:</em> a fixed-timestep loop runs the tap-to-flap physics and ticks the moving/flying-platform pattern spawner every frame — deterministic and load-bearing, not decorative.</li>
+<li><em>Data-driven:</em> continents (biome, parallax layers, hazard/platform sets), obstacle/platform movement patterns, character skins and per-continent difficulty curves are all defined as JSON with hot-reload.</li>
+<li><em>Custom tool:</em> a pattern &amp; continent-theme editor — place and tune platform patterns, assemble a continent&#39;s layers and hazards, preview live.</li>
+<li><em>External DB:</em> Firebase leaderboards + unlocked-continent/skin persistence. <em>Auth ⏭️:</em> optional accounts for cross-device leaderboards (T2). <em>Analytics ⏭️:</em> per-continent difficulty/drop-off funnels (T2).</li>
+<li><em>2D:</em> parallax continent backdrops, sprite characters, animated flying platforms, flap/score/crash VFX. <em>3D:</em> not needed. <em>Networking:</em> none — leaderboards are asynchronous through Firebase, not a custom real-time layer.</li>
+<li><span style="color:#8E44AD"><em>Replay System:</em></span> each run is recorded as seed + timestamped input log and re-simulated deterministically — it validates leaderboard scores and powers a share-a-run feature.</li>
+</ul>
+<h3 id="suggested-tech-goals">Suggested Tech Goals</h3>
+<p>G1–G3 ⭐ are the common goals (fixed for all categories); the other 3 are picked from the Games pool in <code>milestone-goals-pool-per-category.md</code> (G1–G3 ⭐ common, G4+ picks).</p>
+<p><em>M1:</em></p>
+<ul>
+<li><strong>G1 ⭐ Application Shell, Real-time C++ Simulation Loop, Input &amp; Core Logic</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> SDL2 shell with a fixed-timestep loop driving tap-to-flap gravity/impulse and the scrolling world; low-latency single-touch input; C++17/20, CMake, Git.</li><li><b>Prerequisites:</b> None — foundation of this project.</li><li><b>Feeds into:</b> Every other goal; M1 G5 physics and M1 G7 pattern spawner run on this tick; M2 G12 replays it.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Data-Driven Architecture of Core Objects / Entity System</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Continents, parallax layers, platform-movement patterns, hazard sets, character skins and difficulty curves as JSON data assets (nlohmann/json) with hot-reload.</li><li><b>Prerequisites:</b> G1 (loop &amp; entity update hooks).</li><li><b>Feeds into:</b> M1 G4/G7 (they consume this data); M2 G2 (the editor authors this format).</li></ul></details>
+</li>
+<li><strong>G3 ⭐ Debugging, Profiling, Stress Test &amp; CI</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> ImGui overlays (frame time, active platforms, collision debug), Tracy profiling, Catch2 tests; stress test = an auto-flap bot running dense patterns for a simulated long session; Windows + Linux CI.</li><li><b>Prerequisites:</b> G1 (loop to instrument).</li><li><b>Feeds into:</b> M2 G3; the deterministic behaviour M2 G12 relies on.</li></ul></details>
+</li>
+<li><strong>G5 Physics &amp; Collision</strong> — flap gravity/impulse and collision against gaps, grounded platforms and moving/flying platforms.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Custom 2D integrator for the bird plus AABB/swept collision against static and moving platforms (GLM); deterministic so replays and server validation match.</li><li><b>Prerequisites:</b> G1 (fixed tick), G2 (platform definitions).</li><li><b>Feeds into:</b> The core fail condition; M2 G12 (replays re-run this sim).</li></ul></details>
+</li>
+<li><strong>G7 Procedural Level Generation</strong> — the moving/flying-platform pattern spawner that makes the endless run interesting.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Seeded pattern spawner composing authored platform patterns (path, speed, phase) into an endless stream with difficulty-curve pacing per continent; identical seed → identical run.</li><li><b>Prerequisites:</b> G1 (tick), G2 (patterns as data).</li><li><b>Feeds into:</b> M2 G2 (editor authors patterns), M2 G12 (seed drives replays).</li></ul></details>
+</li>
+<li><strong>G4 2D Graphics</strong> — parallax continent rendering and sprite/animation drawing.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Layered parallax scrolling per continent, sprite batching for character/skins and platforms, FreeType score text; SDL2/OpenGL, GLSL, stb_image.</li><li><b>Prerequisites:</b> G1 (loop &amp; window).</li><li><b>Feeds into:</b> Every continent&#39;s look; M2 G4 (advanced VFX) builds on it.</li></ul></details>
+</li>
+</ul>
+<p><em>M2:</em></p>
+<ul>
+<li><strong>G1 ⭐ Architecture — Optimization &amp; Platform Validation</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Tracy-guided optimization of spawn/render hot paths, sprite-atlas memory budgeting, and Emscripten/WASM + Pixel 8a/9a validation of the tap loop.</li><li><b>Prerequisites:</b> All M1 goals.</li><li><b>Feeds into:</b> The mobile deliverable (M2 G15) and showcase stability. AC includes: showcase build runs on the mobile target.</li></ul></details>
+</li>
+<li><strong>G2 ⭐ Content Editor — Core</strong> — the pattern &amp; continent-theme editor (the project&#39;s primary tool).
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Place/tune platform patterns on a timeline, assemble a continent (parallax layers, hazards, skins), JSON round-trip with live in-editor preview and undo/redo.</li><li><b>Libraries/Software:</b> Dear ImGui, nlohmann/json, the project&#39;s SDL2/OpenGL renderer (pattern/continent preview).</li><li><b>Prerequisites:</b> M1 G2 (data format), M1 G7 (spawner used for preview).</li><li><b>Feeds into:</b> All 7 continents&#39; content; the content-creation showcase.</li></ul></details>
+</li>
+<li><strong>G3 ⭐ CI — CMake, Code Quality, Build Standards &amp; Packaging</strong>
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> CMake presets, clang-format/clang-tidy gates, packaging of native + Emscripten web builds via GitHub Actions.</li><li><b>Prerequisites:</b> M1 G3.</li><li><b>Feeds into:</b> Release/showcase builds of every goal.</li></ul></details>
+</li>
+<li><strong>G8 Firebase — Accounts, Leaderboards &amp; Analytics</strong> — global and per-continent leaderboards.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Firestore leaderboards + unlocked-continent/skin persistence, optional Auth accounts, Analytics events for per-continent difficulty — REST from C++.</li><li><b>Prerequisites:</b> M1 G2 (score/run data model).</li><li><b>Feeds into:</b> Competitive showcase; validated by M2 G12.</li></ul></details>
+</li>
+<li><strong>G12 Replay System — Record &amp; Playback</strong> — deterministic replays for score validation and share-a-run.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Record seed + timestamped input log; re-simulate through the deterministic tick; playback controls; server-side re-run validates submitted scores.</li><li><b>Prerequisites:</b> M1 G1 (deterministic loop), M1 G5 (deterministic physics), M2 G8 (scores to validate).</li><li><b>Feeds into:</b> Leaderboard integrity and the share-a-run showcase feature.</li></ul></details>
+</li>
+<li><strong>G15 Mobile Platform Port</strong> — the first-class mobile output.
+  <details><summary>Tech &amp; dependencies</summary><ul><li><b>Tech:</b> Touch-tap mapping, safe-area/thumb-zone layout, on-device frame budgeting; Android NDK or Emscripten build for the reference phone.</li><li><b>Prerequisites:</b> M2 G1 (optimization &amp; platform validation).</li><li><b>Feeds into:</b> The native-mobile deliverable named in the platform fit.</li></ul></details>
+</li>
+</ul>
+<h3 id="track-goals--team-composition">Track Goals &amp; Team Composition</h3>
+<p><strong>Recommended composition:</strong> 6 CS + 1 Design + 2 Art (9) — seven themed continents of environments, character skins and parallax layers is the dominant art surface; a solo designer carries the single-mechanic loop, feel and progression (rules: min 1 Design mandated, max 9 total, D+A ≤ 3; see <code>team-formation.pdf</code>).</p>
+<div style="background:#F5F0FA;border-left:4px solid #7E57C2;padding:6px 12px;margin:10px 0 4px;border-radius:4px"><b>Track goals</b> — suggested Design / UI-UX / Art / TEAM picks for this project; deliverables &amp; quality ladders live in the track pool documents. Design goals for Games come from the benchmark-anchored <b>Games Design pool</b> (`design-goals-pool-games.pdf`).<ul style="margin:4px 0 0"><li><b>Design M1:</b><ul><li>D1 ⭐ Features Design Document (benchmark-informed — Flappy Bird core loop + Subway Surfers &quot;World Tour&quot; theming as primary/secondary benchmarks; scope calibrated to a ★ rating)</li><li>D2 Core Gameplay Loop Prototype (tap-to-flap toy proving the feel — default mandated-designer pick)</li><li>D4 Game Feel &amp; Touch Interaction Specification (tap response, forgiveness, moving-platform readability — only with a 2nd designer)</li></ul></li><li><b>Design M2:</b><ul><li>D1 ⭐ Features Design Iteration &amp; Showcase Readiness (the 7-continent scope proven demoable, sharpened against the benchmark)</li><li>D8 Monetization &amp; Scope Integrity (cosmetic continent/character skins, clean model; cut anything that endangers a demoable 7-continent showcase — only with a 2nd designer)</li></ul></li><li><b>UI/UX M1</b> (graded by the Design instructor for the Games category):<ul><li>U1 ⭐ UI Standards &amp; Wireframe Baseline (main menu, continent select, tap-readable score HUD)</li></ul></li><li><b>UI/UX M2:</b><ul><li>U1 ⭐ Functional UI &amp; Usability (Games required screens: Start, Pause, Resume, Quit-with-confirmation, How to Play, continent select, readable HUD; first-time users unaided)</li><li>U2 ⭐ UX Validation &amp; Final Polished UI (tested with real players; animated, alive)</li><li>U5 Mobile UX Adaptation &amp; Ergonomics (thumb-zone tap, one-handed play on Pixel 8a/9a)</li></ul></li><li><b>Art M1:</b> 2 artists (character + 7-continent environment surface)<ul><li>A1 ⭐ (mockups: main menu + one continent scene)</li><li>A2 Character Concepts (base character + per-continent skins)</li><li>A3 Environment, Props &amp; VFX Concepts (continent biomes, parallax layers, flying-platform art)</li></ul></li><li><b>Art M2:</b><ul><li>A1 ⭐ Critical asset production across the shipped continents</li><li>A3 Environment Alive (parallax ambient animation per continent)</li><li>A5 VFX (flap trails, score bursts, crash)</li></ul></li><li><b>TEAM M1:</b><ul><li>TA1 ⭐ Overall Audio Experience — initial BGM/SFX from the week-5 needs list present &amp; working in the prototype (flap, score, crash; one continent&#39;s ambience), suitable and correctly triggered.</li><li>TA2 ⭐ Audio Engine Functionality — data-driven audio pipeline (swap a continent&#39;s music/SFX without recompiling) + reliable multi-channel playback.</li></ul></li><li><b>TEAM M2:</b><ul><li>TA1 ⭐ Overall Audio Experience — Games floor: ≥1 BGM per continent theme + ≥6 SFX types in the showcase build, correctly triggered.</li><li>TA2 ⭐ Audio Engine Functionality — audio de/serialised, continent-music crossfades, full multi-channel playback the build needs.</li><li>TP1 ⭐ Final Presentation — 7 min in front of class + instructors: live custom-tools showcase (the pattern/theme editor), prototype demo, team post-mortem (wk14).</li></ul></li></ul></div>
+
+<hr />
+<p><em>Generated by the Project Proposal Assessor skill · grounding: live folder · references verified 2026-07-28.</em></p>
+</body>
+</html>
